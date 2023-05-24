@@ -4,7 +4,7 @@ import SearchExercises from '../components/SerachExcercises';
 import Exercises from '../components/Exercises';
 import { useState } from 'react';
 
-export default function Home() {
+export default function HomeExcercise() {
   const [bodyPart, setBodyPart] = useState('all');
   const [exercises, setExercises] = useState([]);
   return (
