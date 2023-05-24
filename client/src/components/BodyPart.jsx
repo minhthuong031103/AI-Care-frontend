@@ -14,16 +14,16 @@ const BodyPart = ({ setExercises, item, setBodyPart, bodyPart }) => (
             borderTop: '4px solid #FF2625',
             background: '#fff',
             borderBottomLeftRadius: '20px',
-            width: '270px',
-            height: '282px',
+            width: '170px',
+            height: '170px',
             cursor: 'pointer',
             gap: '47px',
           }
         : {
             background: '#fff',
             borderBottomLeftRadius: '20px',
-            width: '270px',
-            height: '282px',
+            width: '150px',
+            height: '150px',
             cursor: 'pointer',
             gap: '47px',
           }

@@ -1,0 +1,45 @@
+import React from 'react';
+import { Box, Stack, Typography } from '@mui/material';
+
+export default function DoctorBanner() {
+  return (
+    <>
+      <Box position="relative" p="20px">
+        <Typography
+          color="#569DAA"
+          fontWeight={700}
+          sx={{ fontSize: { lg: '44px', xs: '40px' } }}
+          mb="23px"
+          mt="30px"
+        >
+          Đồng hành cùng bạn giải quyết các vấn đề về sức khỏe tâm lý
+        </Typography>
+        <Typography fontSize="22px" fontFamily="Alegreya" lineHeight="35px">
+          Với đội ngũ bác sĩ tâm lý đến từ khắp cả nước đầy kinh nghiệm
+        </Typography>
+      </Box>
+      {/* <div className="flex justify-center">
+        <img
+          src={HeroBannerImage}
+          alt="hero-banner"
+          className="hero-banner-img"
+        />
+        <img
+          src={HeroBannerImage1}
+          alt="hero-banner"
+          className="hero-banner-img"
+        />
+        <img
+          src={HeroBannerImage2}
+          alt="hero-banner"
+          className="hero-banner-img"
+        />
+        <img
+          src={HeroBannerImage3}
+          alt="hero-banner"
+          className="hero-banner-img"
+        />
+      </div> */}
+    </>
+  );
+}

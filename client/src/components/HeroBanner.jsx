@@ -8,11 +8,7 @@ import HeroBannerImage3 from '../assets/images/banner5.jpg';
 export default function HeroBanner() {
   return (
     <>
-      <Box
-        sx={{ mt: { lg: '50px', xs: '70px' }, ml: { sm: '50px' } }}
-        position="relative"
-        p="20px"
-      >
+      <Box position="relative" p="20px">
         <Typography
           color="#F2BED1"
           fontWeight={700}

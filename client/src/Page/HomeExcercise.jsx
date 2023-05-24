@@ -9,7 +9,7 @@ export default function HomeExcercise() {
   const [exercises, setExercises] = useState([]);
   return (
     <>
-      <Box>
+      <Box style={{ backgroundColor: '#f5f5f5f5' }}>
         <HeroBanner />
         <SearchExercises
           setExercises={setExercises}
