@@ -1,13 +1,14 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://aigeneratingapp.onrender.com';
-// axios.defaults.baseURL = 'http://localhost:8080';
+// axios.defaults.baseURL = 'https://aigeneratingapp.onrender.com';
+axios.defaults.baseURL = 'http://localhost:8080';
 export async function createPost(form) {
   try {
     const { success } = await axios.post('/api/v1/post', {
       prompt: form.prompt,
       name: form.name,
       photo: form.photo,
+      date: form.photo,
     });
     if (success) return Promise.resolve({ success });
   } catch (error) {

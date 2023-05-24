@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FormField from '../components/Diary/FormField';
 import Loader from '../components/Loader';
 import Card from '../components/Diary/Card';
+import { Link, useNavigate } from 'react-router-dom';
 
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
@@ -18,12 +19,15 @@ const RenderCards = ({ data, title }) => {
   );
 };
 export default function DiaryPage() {
+  const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
   const [allPosts, setAllPosts] = useState(null);
   const [searchText, setSearchText] = useState('');
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState(null);
-
+  const handleUpload = () => {
+    navigate('/diary/upload');
+  };
   const fetchPosts = async function () {
     setLoading(true);
     try {
@@ -74,6 +78,15 @@ export default function DiaryPage() {
         <p className="mt-2 text-[#666e75] text-[14px] max-w-[500px]">
           hehe helo
         </p>
+
+        <button type="Button" onClick={handleUpload}>
+          <p
+            className="font-inter font-medium bg-[#27374D] text-white px-5 py-3
+            rounded-md mt-10"
+          >
+            Thêm vào nhật ký
+          </p>
+        </button>
       </div>
       <div className="mt-16">
         <FormField

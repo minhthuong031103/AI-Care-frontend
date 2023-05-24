@@ -14,7 +14,20 @@ export default function Upload() {
     name: '',
     prompt: '',
     photo: '',
+    date: '',
   });
+
+  useState(function () {
+    const currentTime = new Date();
+    const options = {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    };
+    setForm({ ...form, date: currentTime.toLocaleString('en-US', options) }); // Convert to ISO string format
+  }, []);
 
   //   const convertToBase64 = async function (imageUrl) {
   //     const response = await fetch(imageUrl);
@@ -99,37 +112,64 @@ export default function Upload() {
     >
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <div>
-        <h1 className="font-extrabold text-[#222328] text-[32px]">
-          Upload your own image
+        <h1 className="font-medium text-[#222328] text-[32px]">
+          Tạo một khoảnh khắc vào nhật ký của bạn
         </h1>
         <p className="mt-2 text-[#666e75] text-[16px] max-w[500px] ">
-          Này đang test tự up ảnh
+          Ghi lại những khoảnh khắc, những điều cần lưu ý và sự kiện trong ngày
+          của bạn
         </p>
       </div>
+
       <form className="mt-16 max-w-3xl">
         <div className="flex flex-col gap-5">
           <FormField
-            labelName="Your name"
+            disabled={true}
+            labelName="Thời Gian"
+            type="text"
+            name="date"
+            placeholder="Time..."
+            value={form.date}
+            handleChange={handleChange}
+            style={{ backgroundColor: 'lightgray' }}
+          />
+        </div>
+        <div className="flex flex-col mt-5 gap-5">
+          <FormField
+            labelName="Tên "
             type="text"
             name="name"
-            placeholder="Minh Thuong"
+            placeholder="Tên của bạn"
             value={form.name}
             handleChange={handleChange}
           />
         </div>
+        <div>
+          <input type="text"></input>
+          <input
+            className="visible h-[50%]"
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+          />
+        </div>
+
         <div className="flex flex-col py-5 gap-5">
           <FormField
-            labelName="Caption"
+            labelName="Ghi chú"
             type="text"
             name="prompt"
-            placeholder="Write caption for your image"
+            placeholder="Hãy viết gì đó..."
             value={form.prompt}
             handleChange={handleChange}
             handleSurpriseMe={handleSurpriseMe}
           />
-
-          <input type="file" accept="image/*" onChange={handleImageUpload} />
-
+          <input
+            className="bg-slate-500"
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+          />
           <div
             className="relative bg-gray-50 border border-gray-300
           text-gray-900 text-sm rounded-lg focus:ring-blue-500 

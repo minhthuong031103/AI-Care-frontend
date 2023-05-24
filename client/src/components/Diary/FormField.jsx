@@ -8,6 +8,7 @@ export default function FormField({
   handleChange,
   isSurpriseMe,
   handleSurpriseMe,
+  disabled,
 }) {
   return (
     <div>
@@ -29,7 +30,9 @@ export default function FormField({
           </button>
         )}
       </div>
+
       <input
+        disabled={disabled}
         type={type}
         id={name}
         name={name}

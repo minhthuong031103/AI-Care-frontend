@@ -108,6 +108,7 @@ export default function Profile() {
                   placeholder="Email"
                   className="w-full text-black py-2  my-4 bg-transparent border-b border-black outline-none focus:outline-none"
                 ></input>
+
                 <input
                   {...formik.getFieldProps('phone')}
                   type="tel"
