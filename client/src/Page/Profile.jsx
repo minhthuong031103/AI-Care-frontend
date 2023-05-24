@@ -2,22 +2,32 @@ import { Link, useNavigate } from 'react-router-dom';
 import bgregister from '../assets/images/bgforgot.jpg';
 import { useFormik } from 'formik';
 import toast, { Toaster } from 'react-hot-toast';
-import { registerUser } from '../helper/loginHelper';
-import { useEffect } from 'react';
+import { getUserbyId, registerUser, updateUser } from '../helper/loginHelper';
+import { useEffect, useState } from 'react';
 export default function Profile() {
   const _id = localStorage.getItem('_id');
   const navigate = useNavigate();
-
-  useEffect(function () {}, []);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  useEffect(function () {
+    let profilePromise = getUserbyId(_id);
+    profilePromise.then(function (res) {
+      let { email, name, phone } = res.data;
+      setName(name);
+      setPhone(phone);
+      setEmail(email);
+    });
+  }, []);
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
+      email: email,
 
-      phone: '',
+      phone: phone,
+      name: name,
     },
-
+    enableReinitialize: true,
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async function (values) {
@@ -40,33 +50,31 @@ export default function Profile() {
           }
         }
         if (!values.phone) {
-          toast.error('Vui lòng số điện thoại!');
+          toast.error('Vui lòng nhập số điện thoại!');
           return 0;
         }
 
-        // var exist = 0;
-        // let createPromise = registerUser(values);
-        // await createPromise.then(function (res) {
-        //   console.log(res);
-        //   if (res === 'Email exist') {
-        //     toast.error('Email đã được đăng ký, hãy đăng ký email khác!');
-        //     exist = 1;
-        //   } else if (res === 'Phone exist') {
-        //     toast.error('Số điện thoại đã được đăng ký, hãy đăng ký số khác!');
-        //     exist = 1;
-        //   }
-        // });
-        // if (exist) return 0;
-        // else {
-        //   await toast.promise(createPromise, {
-        //     loading: 'Đăng ký...',
-        //     success: (
-        //       <b>Đăng ký thành công! Hãy đăng nhập bằng tài khoản vừa tạo</b>
-        //     ),
-        //     error: <b>Có lỗi xảy ra, vui lòng thử lại</b>,
-        //   });
-        // }
-        console.log(values);
+        let exist = 0;
+        let profilePromise = updateUser(values, _id);
+        await profilePromise.then(function (res) {
+          console.log(res);
+          if (res === 'Email exist') {
+            toast.error('Email đã được đăng ký, hãy đăng ký email khác!');
+            exist = 1;
+          } else if (res === 'Phone exist') {
+            toast.error('Số điện thoại đã được đăng ký, hãy đăng ký số khác!');
+            exist = 1;
+          }
+        });
+        console.log(exist);
+        if (exist) return 0;
+        else {
+          toast.promise(profilePromise, {
+            loading: 'Cập nhật...',
+            success: <b>Cập nhật thông tin thành công! </b>,
+            error: <b>Có lỗi xảy ra, vui lòng thử lại</b>,
+          });
+        }
       } catch (error) {
         console.log(error);
       }

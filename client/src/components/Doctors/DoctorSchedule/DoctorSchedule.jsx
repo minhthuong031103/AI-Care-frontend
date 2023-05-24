@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import style from './Username.module.css';
 import { Toaster, toast } from 'react-hot-toast';
 import { useFormik } from 'formik';
+import { getUserbyId } from '../../../helper/loginHelper';
 
 function DoctorSchedule() {
-  const [file, setFile] = useState();
+  const _id = localStorage.getItem('_id');
 
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  useEffect(function () {
+    let profilePromise = getUserbyId(_id);
+    profilePromise.then(function (res) {
+      let { email, name, phone } = res.data;
+      setName(name);
+      setPhone(phone);
+      setEmail(email);
+    });
+  }, []);
   const formik = useFormik({
     initialValues: {
-      email: '',
-      username: '',
-      mobile: '',
-      address: '',
-      firstName: '',
-      lastName: '',
+      email: email,
+      name: name,
+      phone: phone,
     },
     enableReinitialize: true,
 

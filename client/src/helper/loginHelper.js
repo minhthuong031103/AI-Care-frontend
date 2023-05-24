@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 // axios.defaults.baseURL = 'https://aigeneratingapp.onrender.com';
-axios.defaults.baseURL = 'https://ai-care.onrender.com/';
+// axios.defaults.baseURL = 'https://ai-care.onrender.com/';
+axios.defaults.baseURL = 'http://localhost:8080';
 export async function createPost(form) {
   try {
     const { success } = await axios.post('/api/v1/post', {
@@ -34,5 +35,24 @@ export async function verifyLogin({ email, password }) {
   } catch (error) {
     console.log(error);
     return Promise.reject({ error: 'Password doesnt match' });
+  }
+}
+export async function getUserbyId(_id) {
+  try {
+    const { data } = await axios.get(`/user/${_id}`);
+    return Promise.resolve({ data });
+  } catch (error) {
+    return Promise.reject({ error: 'Can not get user' });
+  }
+}
+
+export async function updateUser(user, _id) {
+  try {
+    const { data, status } = await axios.put('user/updateuser', { user, _id });
+    if (status === 201) return Promise.resolve('Email exist');
+    if (status === 202) return Promise.resolve('Phone exist');
+    return Promise.resolve({ data });
+  } catch (error) {
+    console.log(error);
   }
 }

@@ -12,6 +12,8 @@ import DoctorPage from './Page/DoctorPage';
 import DoctorInfor from './components/Doctors/DoctorInfor/DoctorInfo';
 import Footer from './components/Footer';
 import DoctorSchedule from './components/Doctors/DoctorSchedule/DoctorSchedule';
+import DiaryPage from './Page/DiaryPage';
+import Upload from './Page/Upload';
 function App() {
   const [count, setCount] = useState(0);
 
@@ -27,6 +29,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/schedule" element={<DoctorPage />} />
+          <Route path="/diary" element={<DiaryPage />} />
+          <Route path="/diary/upload" element={<Upload />} />
           <Route path="/doctor/:id" element={<DoctorInfor />} />
           <Route path="/doctor/schedule/:id" element={<DoctorSchedule />} />
         </Routes>
