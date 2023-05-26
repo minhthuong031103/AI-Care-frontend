@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+// import './styles.css';
 import { doctorList } from './config/data';
 import DoctorList from '../components/Doctors/DoctorList/DoctorList';
 import DoctorSearchBar from '../components/Doctors/SearchBar/DoctorSearchBar';
@@ -35,6 +35,7 @@ const DoctorPage = () => {
     <div className="bg-[#f5f5f5f5]">
       <DoctorBanner></DoctorBanner>
       {/* Search Bar */}
+
       <DoctorSearchBar
         value={searchKey}
         clearSearch={handleClearSearch}
@@ -49,7 +50,9 @@ const DoctorPage = () => {
           </div>
         </>
       ) : (
-        <DoctorList doctors={doctors} />
+        <div className="px-4 sm:px-6 lg:px-8">
+          <DoctorList doctors={doctors} />
+        </div>
       )}
     </div>
   );

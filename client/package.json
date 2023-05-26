@@ -12,12 +12,15 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@headlessui/react": "^1.7.14",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.2",
+    "antd": "^5.5.1",
     "axios": "^1.4.0",
     "dotenv": "^16.0.3",
     "file-saver": "^2.0.5",
     "formik": "^2.2.9",
+    "framer-motion": "^10.12.16",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-horizontal-scrolling-menu": "^2.7.1",
@@ -25,7 +28,8 @@
     "react-icons": "^4.8.0",
     "react-loader-spinner": "^5.3.4",
     "react-router-dom": "^6.11.2",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "react-scroll": "^1.8.9"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

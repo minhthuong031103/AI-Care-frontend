@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import DoctorSchedule from './components/Doctors/DoctorSchedule/DoctorSchedule';
 import DiaryPage from './Page/DiaryPage';
 import Upload from './Page/Upload';
+import { ChatPage } from './Page/ChatPage/ChatPage';
 function App() {
   const [count, setCount] = useState(0);
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/diary/upload" element={<Upload />} />
           <Route path="/doctor/:id" element={<DoctorInfor />} />
           <Route path="/doctor/schedule/:id" element={<DoctorSchedule />} />
+          <Route path="/chat" element={<ChatPage></ChatPage>}></Route>
         </Routes>
       </main>
       <Footer></Footer>
