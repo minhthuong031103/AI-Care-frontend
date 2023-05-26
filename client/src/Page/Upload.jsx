@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import preview from '../assets/images/preview.png';
-import ImageUploading from 'react-images-uploading';
+// import ImageUploading from 'react-images-uploading';
 import toast, { Toaster } from 'react-hot-toast';
 import { createPost } from '../helper/diaryHelper';
 import { getRandomPrompt } from '../components/Diary';
 import FormField from '../components/Diary/FormField';
 import Loader from '../components/Loader';
+import Uploader from './Uploader/Uploader';
 export default function Upload() {
   const navigate = useNavigate();
   const [temp, setTemp] = useState();
@@ -180,7 +181,7 @@ export default function Upload() {
           />
         </div>
         <div>
-          <ImageUploading
+          {/* <ImageUploading
             value={form.photo}
             onChange={onChange}
             dataURLKey="data_url"
@@ -232,20 +233,12 @@ export default function Upload() {
                   )}
                 </div>
 
-                {/* <div className="upload__image-wrapper">
-                <button
-                  style={isDragging ? { color: 'red' } : undefined}
-                 
-                  {...dragProps}
-                >
-                  Click or Drop here
-                </button>
-              </div> */}
+        
               </>
             )}
-          </ImageUploading>
+          </ImageUploading> */}
         </div>
-
+        <Uploader></Uploader>
         <div className="mt-5 flex gap-5"></div>
         <button
           type="button"
