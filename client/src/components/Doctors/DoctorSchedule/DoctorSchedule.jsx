@@ -36,6 +36,32 @@ function DoctorSchedule() {
     validateOnChange: false,
     onSubmit: async function (values) {
       const schedulePromise = scheduleDoctor(values, doctor.name, doctor.email);
+      if (!values.name) {
+        toast.error('Vui lòng nhập họ và tên!');
+        return 0;
+      }
+      if (!values.email) {
+        toast.error('Vui lòng nhập email');
+        return 0;
+      } else {
+        if (
+          !/^[a-z0-9!'#$%&*+\/=?^_`{|}~-]+(?:\.[a-z0-9!'#$%&*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-zA-Z]{2,}$/i.test(
+            values.email
+          )
+        ) {
+          toast.error('Email không hợp lệ!');
+          return 0;
+        }
+      }
+      if (!values.phone) {
+        toast.error('Vui lòng số điện thoại!');
+        return 0;
+      }
+      if (!values.message) {
+        toast.error('Vui lòng để lại lời nhắn!');
+        return 0;
+      }
+
       schedulePromise
         .then(function () {
           toast.success(
