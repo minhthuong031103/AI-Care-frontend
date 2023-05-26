@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { MdCloudUpload, MdDelete } from 'react-icons/md';
+import { AiFillFileImage } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import preview from '../assets/images/preview.png';
 // import ImageUploading from 'react-images-uploading';
@@ -7,34 +9,30 @@ import { createPost } from '../helper/diaryHelper';
 import { getRandomPrompt } from '../components/Diary';
 import FormField from '../components/Diary/FormField';
 import Loader from '../components/Loader';
+import './Uploader/uploader.css';
 import Uploader from './Uploader/Uploader';
 export default function Upload() {
   const navigate = useNavigate();
   const [temp, setTemp] = useState();
-  const [images, setImages] = useState([]);
-  const maxNumber = 69;
-  const convertToBase64 = async function (imageUrl) {
-    const response = await fetch(imageUrl);
-    const blob = await response.blob();
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result);
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
-  };
-  const onChange = (image, addUpdateIndex) => {
-    // data for submit
-    console.log(image);
+  const [image, setImage] = useState(null);
+  const [fileName, setFileName] = useState('No selected file');
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
 
-    setForm({ ...form, photo: image[0].data_url });
-    // Set the base64Image to the form.photo variable or use it as needed
+    reader.onload = () => {
+      const base64Image = reader.result;
+      setForm({ ...form, photo: base64Image });
+      // Set the base64Image to the form.photo variable or use it as needed
+    };
+
+    reader.readAsDataURL(file);
   };
 
   const [form, setForm] = useState({
     name: '',
     prompt: '',
-    photo: '',
+    photo: null,
     date: '',
   });
 
@@ -97,18 +95,7 @@ export default function Upload() {
   //   };
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
 
-    reader.onload = () => {
-      const base64Image = reader.result;
-      setForm({ ...form, photo: base64Image });
-      // Set the base64Image to the form.photo variable or use it as needed
-    };
-
-    reader.readAsDataURL(file);
-  };
   const handleSubmit = async function () {
     try {
       setLoading(true);
@@ -238,16 +225,52 @@ export default function Upload() {
             )}
           </ImageUploading> */}
         </div>
-        <Uploader></Uploader>
+        <form
+          className="uploadform"
+          onClick={() => document.querySelector('.input-field').click()}
+        >
+          <input
+            type="file"
+            accept="image/*"
+            className="input-field"
+            hidden
+            onChange={handleImageUpload}
+          />
+
+          {loading ? (
+            <Loader></Loader>
+          ) : form.photo ? (
+            <img src={form.photo} width={150} height={150} alt={fileName} />
+          ) : (
+            <>
+              <MdCloudUpload color="#1475cf" size={60} />
+              <p>Browse Files to upload</p>
+            </>
+          )}
+        </form>
+
+        <section className="uploaded-row">
+          <AiFillFileImage color="#1475cf" />
+          <span className="upload-content">
+            {fileName} -
+            <MdDelete
+              style={{ color: 'red' }}
+              onClick={() => {
+                setFileName('No selected File');
+                setImage(null);
+              }}
+            />
+          </span>
+        </section>
         <div className="mt-5 flex gap-5"></div>
-        <button
+        {/* <button
           type="button"
           onClick={removeClick}
           className="mt-3 text-white bg-[#B70404] font-medium
           rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
         >
           Xóa ảnh
-        </button>
+        </button> */}
         <div className="mt-2 text-[#666e75] text-[14px]">
           <button
             type="button"

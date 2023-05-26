@@ -40,6 +40,7 @@ function Uploader() {
         <span className="upload-content">
           {fileName} -
           <MdDelete
+            style={{ color: 'red' }}
             onClick={() => {
               setFileName('No selected File');
               setImage(null);
