@@ -8,13 +8,15 @@ import HomeExcercise from './Page/HomeExcercise';
 import Login from './Page/Login';
 import Register from './Page/Register';
 import Profile from './Page/Profile';
-import DoctorPage from './Page/DoctorPage';
+
 import DoctorInfor from './components/Doctors/DoctorInfor/DoctorInfo';
 import Footer from './components/Footer';
 import DoctorSchedule from './components/Doctors/DoctorSchedule/DoctorSchedule';
 import DiaryPage from './Page/DiaryPage';
 import Upload from './Page/Upload';
 import { ChatPage } from './Page/ChatPage/ChatPage';
+import DoctorPage from './Page/DoctorPage/DoctorPage';
+import PasswordPage from './Page/PasswordPage';
 function App() {
   const [count, setCount] = useState(0);
 
@@ -35,6 +37,10 @@ function App() {
           <Route path="/doctor/:id" element={<DoctorInfor />} />
           <Route path="/doctor/schedule/:id" element={<DoctorSchedule />} />
           <Route path="/chat" element={<ChatPage></ChatPage>}></Route>
+          <Route
+            path="/changepassword/:id"
+            element={<PasswordPage></PasswordPage>}
+          />
         </Routes>
       </main>
       <Footer></Footer>

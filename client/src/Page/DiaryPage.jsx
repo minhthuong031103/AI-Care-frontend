@@ -76,7 +76,8 @@ export default function DiaryPage() {
       <div>
         <h1 className=" text-[#222328] text-[32px]">Nhật ký</h1>
         <p className="mt-2 text-[#666e75] text-[14px] max-w-[500px]">
-          hehe helo
+          Ghi lại những sự kiện, suy nghĩ và kỷ niệm quan trọng trong cuộc sống
+          hàng ngày
         </p>
 
         <button type="Button" onClick={handleUpload}>

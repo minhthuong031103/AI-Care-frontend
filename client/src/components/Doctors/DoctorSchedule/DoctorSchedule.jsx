@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { doctorList } from '../../../Page/config/data';
 import style from './Username.module.css';
 import { Toaster, toast } from 'react-hot-toast';
 import { useFormik } from 'formik';
-import { getUserbyId } from '../../../helper/loginHelper';
+import { getUserbyId, scheduleDoctor } from '../../../helper/loginHelper';
 
 function DoctorSchedule() {
   const _id = localStorage.getItem('_id');
-
+  const { id } = useParams();
+  const doctor = doctorList.find((doctor) => doctor.id === id);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+
   useEffect(function () {
     let profilePromise = getUserbyId(_id);
     profilePromise.then(function (res) {
@@ -26,21 +28,25 @@ function DoctorSchedule() {
       email: email,
       name: name,
       phone: phone,
+      message: '',
     },
     enableReinitialize: true,
 
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async function (values) {
-      //   values = await Object.assign(values, {
-      //     profile: file || apiData?.profile || '',
-      //   });
-      //   let updatePromise = updateUser(values);
-      //   toast.promise(updatePromise, {
-      //     loading: 'Updating...',
-      //     success: <b>Updated successfully</b>,
-      //     error: <b>Error updated</b>,
-      //   });
+      const schedulePromise = scheduleDoctor(values, doctor.name, doctor.email);
+      schedulePromise
+        .then(function () {
+          toast.success(
+            'Đã gửi yêu cầu tư vấn đến bác sĩ thành công, bác sĩ sẽ liên lạc với bạn trong thời gian sớm nhất'
+          );
+        })
+        .catch(function (error) {
+          console.log(error);
+          toast.error('Có lỗi xảy ra, vui lòng thử lại');
+        });
+
       console.log(values);
     },
   });
@@ -59,9 +65,12 @@ function DoctorSchedule() {
       <div className="flex justify-center items-center  h-auto ">
         <div className={style.glass}>
           <div className="title flex flex-col items-center">
-            <h4 className="text-3xl font-bold">Đặt lịch tư vấn tâm lý</h4>
+            <h4 className="text-3xl font-bold">Phiếu liên hệ tư vấn tâm lý</h4>
             <span className="py-4 text-xl w-2/3 text-center text-gray-500">
-              Bác sĩ A
+              Bác sĩ {doctor.name}
+            </span>
+            <span className="py-4 text-xl w-2/3 text-center text-gray-500">
+              Địa chỉ {doctor.address}
             </span>
             <span className="py-4 text-sm w-2/3 text-start text-gray-500">
               Hãy điền các đầy đủ và chính xác các thông tin để chúng tôi có thể
@@ -74,14 +83,14 @@ function DoctorSchedule() {
                 {...formik.getFieldProps('name')}
                 type="text"
                 placeholder="Họ và tên"
-                className="w-3/4 text-black py-2  my-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                className="w-1/2 text-black py-2  my-4 bg-transparent border-b border-black outline-none focus:outline-none"
               ></input>
 
               <input
                 {...formik.getFieldProps('email')}
                 type="email"
                 placeholder="Email"
-                className="w-3/4 text-black py-2  my-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                className="w-1/2 text-black py-2  my-4 bg-transparent border-b border-black outline-none focus:outline-none"
               ></input>
 
               <div className=" textbox flex flex-col gap-6 items-center w-full">
@@ -90,13 +99,13 @@ function DoctorSchedule() {
                   type="tel"
                   pattern="^0\d{9,10}$"
                   placeholder="Số điện thoại"
-                  className="w-3/4 text-black py-2  my-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                  className="w-1/2 text-black py-2  my-4 bg-transparent border-b border-black outline-none focus:outline-none"
                 ></input>
                 <input
                   {...formik.getFieldProps('message')}
                   type="text"
                   placeholder="Lời nhắn"
-                  className="w-full text-black py-2  my-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                  className="w-3/4 text-black py-2  my-4 bg-transparent border-b border-black outline-none focus:outline-none"
                 ></input>
               </div>
 

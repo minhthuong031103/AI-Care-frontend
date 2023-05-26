@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 // import './styles.css';
-import { doctorList } from './config/data';
-import DoctorList from '../components/Doctors/DoctorList/DoctorList';
-import DoctorSearchBar from '../components/Doctors/SearchBar/DoctorSearchBar';
+import { doctorList } from '../config/data';
+import DoctorList from '../../components/Doctors/DoctorList/DoctorList';
+import DoctorSearchBar from '../../components/Doctors/SearchBar/DoctorSearchBar';
 
-import DoctorBanner from '../components/Doctors/DoctorBanner';
+import DoctorBanner from '../../components/Doctors/DoctorBanner';
 
 const DoctorPage = () => {
   const [doctors, setDoctors] = useState(doctorList);
@@ -50,9 +50,11 @@ const DoctorPage = () => {
           </div>
         </>
       ) : (
-        <div className="px-4 sm:px-6 lg:px-8">
-          <DoctorList doctors={doctors} />
-        </div>
+        <section className="blog">
+          <div className="container grid3">
+            <DoctorList doctors={doctors} />
+          </div>
+        </section>
       )}
     </div>
   );

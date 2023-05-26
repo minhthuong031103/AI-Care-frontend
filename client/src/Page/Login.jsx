@@ -38,7 +38,7 @@ export default function Login() {
         });
         await toast.promise(loginPromise, {
           loading: 'Loading...',
-          success: 'Login successfully!',
+          success: 'Đăng nhập thành công!',
           error: 'Email hoặc mật khẩu không chính xác, vui lòng thử lại!',
         });
 

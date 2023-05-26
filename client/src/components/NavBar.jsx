@@ -11,25 +11,21 @@ const Navbar = () => {
   const pr = currentPath.substring(1); // Removes the leading slash
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
+  const [activePage, setActivePage] = useState(pr);
   const onClickLogin = () => {
+    setActivePage('/login');
     navigate('/login');
   };
 
   const onClickLogout = () => {
+    setActivePage('/login');
     localStorage.removeItem('token');
     localStorage.removeItem('_id');
     navigate('/login');
   };
 
-  const [activePage, setActivePage] = useState(pr);
   const [isOpen, setIsOpen] = useState(false);
-  const logOut = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('_id');
-    setToken('');
 
-    setActivePage('/');
-  };
   return (
     <>
       {/* <nav className="navbar">
@@ -109,7 +105,7 @@ const Navbar = () => {
               <div className="flex items-center  mx-20  justify-between w-full">
                 <div className="flex justify-center items-center flex-shrink-0 ">
                   <h1 className=" font-bold text-3xl cursor-pointer">
-                    Stream<span className="text-blue-500">line</span>
+                    AI-<span className="text-blue-500">Care</span>
                   </h1>
                 </div>
                 <div className="hidden md:block">
@@ -300,7 +296,7 @@ const Navbar = () => {
                   </Link>
                   <Link
                     activeClass="services"
-                    to="/chedule"
+                    to="/schedule"
                     smooth={true}
                     offset={50}
                     duration={500}
