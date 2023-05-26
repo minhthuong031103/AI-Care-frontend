@@ -1,7 +1,0 @@
-{
-  "build": {
-    "rollupOptions": {
-      "external": ["react-images-uploading"]
-    }
-  }
-}
