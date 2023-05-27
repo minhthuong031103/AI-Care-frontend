@@ -103,14 +103,21 @@ const Navbar = () => {
         </button>
       </nav> */}{' '}
       <div>
-        <nav className=" shadow-sm w-full z-10">
+        <nav className=" shadow-sm w-full z-10 fixed top-0 left-0 z-50 bg-white/[0.6] shadow">
           <div className="w-full">
             <div className="flex items-center h-20 w-full">
-              <div className="flex items-center  mx-20  justify-between w-full">
+              <div className="flex items-center  ml-[10px] mr-[30px]  justify-between w-full">
                 <div className="flex justify-center items-center flex-shrink-0 ">
-                  <h1 className=" font-bold text-3xl cursor-pointer">
-                    Stream<span className="text-blue-500">line</span>
-                  </h1>
+                  <Link to="/">
+                    <h1 className="text-2xl flex items-center sm:text-3xl lg:text-4xl m-0 text-secondary font-bold">
+                      <img
+                      src={"/images/logoWeb.png"}
+                      alt="logo-app"
+                      className="w-16 h-16"
+                    />
+                      AI<span className="text-blue-500">CARE</span>
+                    </h1>
+                  </Link>
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
@@ -121,8 +128,8 @@ const Navbar = () => {
                       smooth={true}
                       offset={50}
                       duration={500}
-                      className={`cursor-pointer hover:bg-blue-600 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
-                        activePage === '' ? 'bg-[#C4DFDF]' : ''
+                      className={`cursor-pointer hover:bg-blue-500 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
+                        activePage === '' ? 'bg-[#b5d8f3]' : ''
                       }`}
                     >
                       Trang chủ
@@ -134,8 +141,8 @@ const Navbar = () => {
                       smooth={true}
                       offset={50}
                       duration={500}
-                      className={`cursor-pointer hover:bg-blue-600 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
-                        activePage === 'chat' ? 'bg-[#C4DFDF]' : ''
+                      className={`cursor-pointer hover:bg-blue-500 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
+                        activePage === 'chat' ? 'bg-[#b5d8f3]' : ''
                       }`}
                     >
                       AI-Care chat
@@ -147,8 +154,8 @@ const Navbar = () => {
                       smooth={true}
                       offset={50}
                       duration={500}
-                      className={`cursor-pointer hover:bg-blue-600 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
-                        activePage === 'exercise' ? 'bg-[#C4DFDF]' : ''
+                      className={`cursor-pointer hover:bg-blue-500 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
+                        activePage === 'exercise' ? 'bg-[#b5d8f3]' : ''
                       }`}
                     >
                       Tập luyện
@@ -161,8 +168,8 @@ const Navbar = () => {
                       smooth={true}
                       offset={50}
                       duration={500}
-                      className={`cursor-pointer hover:bg-blue-600 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
-                        activePage === 'schedule' ? 'bg-[#C4DFDF]' : ''
+                      className={`cursor-pointer hover:bg-blue-500 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
+                        activePage === 'schedule' ? 'bg-[#b5d8f3]' : ''
                       }`}
                     >
                       Bác sĩ tâm lý
@@ -174,8 +181,8 @@ const Navbar = () => {
                       smooth={true}
                       offset={50}
                       duration={500}
-                      className={`cursor-pointer hover:bg-blue-600 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
-                        activePage === 'diary' ? 'bg-[#C4DFDF]' : ''
+                      className={`cursor-pointer hover:bg-blue-500 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
+                        activePage === 'diary' ? 'bg-[#b5d8f3]' : ''
                       }`}
                     >
                       Nhật ký
@@ -187,8 +194,8 @@ const Navbar = () => {
                       smooth={true}
                       offset={50}
                       duration={500}
-                      className={`cursor-pointer hover:bg-blue-600 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
-                        activePage === 'profile' ? 'bg-[#C4DFDF]' : ''
+                      className={`cursor-pointer hover:bg-blue-500 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
+                        activePage === 'profile' ? 'bg-[#b5d8f3]' : ''
                       }`}
                     >
                       Tài khoản
@@ -216,7 +223,7 @@ const Navbar = () => {
                   <span className="sr-only">Open main menu</span>
                   {!isOpen ? (
                     <svg
-                      className="block h-6 w-6"
+                      className="block h-6 w-6 "
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -262,10 +269,10 @@ const Navbar = () => {
             leaveTo="opacity-0 scale-95"
           >
             {(ref) => (
-              <div className="md:hidden" id="mobile-menu">
+              <div className="md:hidden" id="mobile-menu ">
                 <div
                   ref={ref}
-                  className="bg-white px-2 pt-2 pb-3 space-y-1 sm:px-3"
+                  className="bg-white px-2 pt-0 pb-3 space-y-1 sm:px-3 z-50 bg-white/[0.2] shadow "
                 >
                   <Link
                     to="/"
@@ -273,7 +280,7 @@ const Navbar = () => {
                     smooth={true}
                     offset={50}
                     duration={500}
-                    className="cursor-pointer hover:bg-blue-600 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    className="cursor-pointer hover:bg-blue-500 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                   >
                     Trang chủ
                   </Link>
@@ -283,7 +290,7 @@ const Navbar = () => {
                     smooth={true}
                     offset={50}
                     duration={500}
-                    className="cursor-pointer hover:bg-blue-600 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    className="cursor-pointer hover:bg-blue-500 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                   >
                     AI-Care chat
                   </Link>
@@ -294,7 +301,7 @@ const Navbar = () => {
                     smooth={true}
                     offset={50}
                     duration={500}
-                    className="cursor-pointer hover:bg-blue-600 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    className="cursor-pointer hover:bg-blue-500 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                   >
                     Tập luyện
                   </Link>
@@ -304,7 +311,7 @@ const Navbar = () => {
                     smooth={true}
                     offset={50}
                     duration={500}
-                    className="cursor-pointer hover:bg-blue-600 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    className="cursor-pointer hover:bg-blue-500 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                   >
                     Bác sĩ tâm lý
                   </Link>
@@ -315,7 +322,7 @@ const Navbar = () => {
                     smooth={true}
                     offset={50}
                     duration={500}
-                    className="cursor-pointer hover:bg-blue-600 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    className="cursor-pointer hover:bg-blue-500 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                   >
                     Nhật ký
                   </Link>
@@ -325,7 +332,7 @@ const Navbar = () => {
                     smooth={true}
                     offset={50}
                     duration={500}
-                    className="cursor-pointer hover:bg-blue-600 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    className="cursor-pointer hover:bg-blue-500 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                   >
                     Tài khoản
                   </Link>

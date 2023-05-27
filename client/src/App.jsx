@@ -15,6 +15,7 @@ import DoctorSchedule from './components/Doctors/DoctorSchedule/DoctorSchedule';
 import DiaryPage from './Page/DiaryPage';
 import Upload from './Page/Upload';
 import { ChatPage } from './Page/ChatPage/ChatPage';
+import HomeTest from './Page/HomeTest'
 function App() {
   const [count, setCount] = useState(0);
 
@@ -22,8 +23,9 @@ function App() {
     <BrowserRouter>
       <Navbar></Navbar>
 
-      <main className="sm:p-8 px-4 py-8 w-full bg-[#f9fafe] min-h-[calc(100vh-73px)]">
+      <main className="w-full pb-[32px] bg-[#f9fafe] min-h-[calc(100vh-73px)]">
         <Routes>
+          <Route path="/hometest" element={<HomeTest></HomeTest>} />
           <Route path="/exercise" element={<HomeExcercise></HomeExcercise>} />
           <Route path="/exercise/:id" element={<ExerciseDetail />} />
           <Route path="/login" element={<Login />} />
@@ -37,7 +39,7 @@ function App() {
           <Route path="/chat" element={<ChatPage></ChatPage>}></Route>
         </Routes>
       </main>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </BrowserRouter>
   );
 }
