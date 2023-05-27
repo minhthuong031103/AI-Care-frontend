@@ -19,7 +19,7 @@ import DoctorPage from './Page/DoctorPage/DoctorPage';
 import PasswordPage from './Page/PasswordPage';
 import HomeTest from './Page/HomeTest';
 import ForgotPage from './Page/Forget/ForgotPage';
-import OtpPage from './Page/Forget/otpPage';
+import OtpPage from './Page/Forget/OtpPage';
 import ResetPage from './Page/Forget/ResetPage';
 function App() {
   const [count, setCount] = useState(0);
