@@ -8,6 +8,7 @@ import { Button } from '@mui/material';
 // import { Link } from 'react-scroll';
 const Navbar = () => {
   const currentPath = window.location.pathname;
+
   const pr = currentPath.substring(1); // Removes the leading slash
   const token = localStorage.getItem('token');
   const navigate = useNavigate();
@@ -112,13 +113,13 @@ const Navbar = () => {
                   <div className="ml-10 flex items-baseline space-x-4">
                     <Link
                       onClick={() => setActivePage('')}
-                      activeClass="Home"
+                      activeClass="Home font-sans"
                       to="/"
                       smooth={true}
                       offset={50}
                       duration={500}
                       className={`cursor-pointer hover:bg-blue-600 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
-                        activePage === '' ? 'bg-[#C4DFDF]' : ''
+                        activePage === '' ? '' : ''
                       }`}
                     >
                       Trang chủ
@@ -131,7 +132,7 @@ const Navbar = () => {
                       offset={50}
                       duration={500}
                       className={`cursor-pointer hover:bg-blue-600 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
-                        activePage === 'chat' ? 'bg-[#C4DFDF]' : ''
+                        activePage === 'chat' ? '' : ''
                       }`}
                     >
                       AI-Care chat
@@ -144,7 +145,7 @@ const Navbar = () => {
                       offset={50}
                       duration={500}
                       className={`cursor-pointer hover:bg-blue-600 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
-                        activePage === 'exercise' ? 'bg-[#C4DFDF]' : ''
+                        activePage === 'exercise' ? '' : ''
                       }`}
                     >
                       Tập luyện
@@ -158,7 +159,7 @@ const Navbar = () => {
                       offset={50}
                       duration={500}
                       className={`cursor-pointer hover:bg-blue-600 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
-                        activePage === 'schedule' ? 'bg-[#C4DFDF]' : ''
+                        activePage === 'schedule' ? '' : ''
                       }`}
                     >
                       Bác sĩ tâm lý
@@ -171,7 +172,7 @@ const Navbar = () => {
                       offset={50}
                       duration={500}
                       className={`cursor-pointer hover:bg-blue-600 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
-                        activePage === 'diary' ? 'bg-[#C4DFDF]' : ''
+                        activePage === 'diary' ? '' : ''
                       }`}
                     >
                       Nhật ký
@@ -184,7 +185,7 @@ const Navbar = () => {
                       offset={50}
                       duration={500}
                       className={`cursor-pointer hover:bg-blue-600 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
-                        activePage === 'profile' ? 'bg-[#C4DFDF]' : ''
+                        activePage === 'profile' ? '' : ''
                       }`}
                     >
                       Tài khoản

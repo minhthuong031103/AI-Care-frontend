@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MdCloudUpload, MdDelete } from 'react-icons/md';
 import { AiFillFileImage } from 'react-icons/ai';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import preview from '../assets/images/preview.png';
 // import ImageUploading from 'react-images-uploading';
 import toast, { Toaster } from 'react-hot-toast';
@@ -12,6 +12,7 @@ import Loader from '../components/Loader';
 import './Uploader/uploader.css';
 import Uploader from './Uploader/Uploader';
 export default function Upload() {
+  const _id = localStorage.getItem('_id');
   const navigate = useNavigate();
   const [temp, setTemp] = useState();
   const [image, setImage] = useState(null);
@@ -99,12 +100,16 @@ export default function Upload() {
   const handleSubmit = async function () {
     try {
       setLoading(true);
-      let CreatePostpromise = createPost(form);
+      let CreatePostpromise = createPost(form, _id);
       CreatePostpromise.then(function () {
         setLoading(false);
         toast.success('Thêm thành công');
+        setTimeout(() => {
+          navigate('/diary');
+        }, 500);
       });
     } catch (error) {
+      toast.error('Có lỗi xảy ra');
       console.log(error);
     }
   };

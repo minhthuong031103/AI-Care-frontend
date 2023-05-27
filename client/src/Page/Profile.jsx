@@ -53,28 +53,32 @@ export default function Profile() {
           toast.error('Vui lòng nhập số điện thoại!');
           return 0;
         }
-
+        const toastId = toast.loading('Đang xử lý...');
         let exist = 0;
         let profilePromise = updateUser(values, _id);
-        await profilePromise.then(function (res) {
-          console.log(res);
-          if (res === 'Email exist') {
-            toast.error('Email đã được đăng ký, hãy đăng ký email khác!');
-            exist = 1;
-          } else if (res === 'Phone exist') {
-            toast.error('Số điện thoại đã được đăng ký, hãy đăng ký số khác!');
-            exist = 1;
-          }
-        });
-        console.log(exist);
-        if (exist) return 0;
-        else {
-          toast.promise(profilePromise, {
-            loading: 'Cập nhật...',
-            success: <b>Cập nhật thông tin thành công! </b>,
-            error: <b>Có lỗi xảy ra, vui lòng thử lại</b>,
+        profilePromise
+          .then(function (res) {
+            toast.dismiss(toastId);
+
+            console.log(res);
+            if (res === 'Email exist') {
+              toast.error('Email đã được đăng ký, hãy đăng ký email khác!');
+            } else if (res === 'Phone exist') {
+              toast.error(
+                'Số điện thoại đã được đăng ký, hãy đăng ký số khác!'
+              );
+            } else {
+              toast.success('Cập nhật thông tin thành công!');
+              setTimeout(() => {
+                window.location.reload();
+              }, 500);
+            }
+          })
+          .catch(function (error) {
+            toast.dismiss(toastId);
+            toast.error('Có lỗi xảy ra, vui lòng thử lại');
+            console.log(error);
           });
-        }
       } catch (error) {
         console.log(error);
       }

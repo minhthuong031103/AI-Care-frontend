@@ -1,21 +1,26 @@
-import { Link, useNavigate } from 'react-router-dom';
-import bgregister from '../assets/images/bgforgot.jpg';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+
 import { useFormik } from 'formik';
 import toast, { Toaster } from 'react-hot-toast';
 import {
   changePassword,
   getUserbyId,
   registerUser,
+  resetPassword,
   updateUser,
-} from '../helper/loginHelper';
+} from '../../helper/loginHelper';
 import { useEffect, useState } from 'react';
-export default function PasswordPage() {
-  const _id = localStorage.getItem('_id');
+export default function ResetPage() {
   const navigate = useNavigate();
+  const { _id } = useParams();
+  useEffect(function () {
+    if (!localStorage.getItem('session')) {
+      navigate('/forgot');
+    }
+  }, []);
 
   const formik = useFormik({
     initialValues: {
-      password: '',
       newPassword: '',
       confirmNewPassword: '',
     },
@@ -24,11 +29,6 @@ export default function PasswordPage() {
     validateOnChange: false,
     onSubmit: async function (values) {
       try {
-        if (!values.password) {
-          toast.error('Vui lòng nhập mật khẩu');
-          return 0;
-        }
-
         if (!values.newPassword) {
           toast.error('Vui lòng nhập mật khẩu mới');
           return 0;
@@ -56,24 +56,21 @@ export default function PasswordPage() {
           toast.error('Mật khẩu xác nhận không chính xác!');
           return 0;
         }
-        let passwordPromise = changePassword(
-          { password: values.password, newPassword: values.newPassword },
-          _id
-        );
+        let passwordPromise = resetPassword(_id, values.newPassword);
         const toastId = toast.loading('Đang xử lý...');
-        await passwordPromise
+        passwordPromise
           .then(function (res) {
             toast.dismiss(toastId);
-            if (res === 'Password not correct') {
-              toast.error('Mật khẩu hiện tại không chính xác');
-            } else {
-              toast.success('Thay đổi mật khẩu thành công!');
+            localStorage.removeItem('session');
+            if (res.message === 'ok') {
+              toast.success('Đặt lại mật khẩu thành công!');
               setTimeout(() => {
-                navigate(`/profile/${_id}`);
-              }, 500);
+                navigate('/login');
+              }, 1500);
             }
           })
           .catch(function (error) {
+            toast.dismiss(toastId);
             console.log(error);
             toast.error('Có lỗi xảy ra, vui lòng thử lại');
           });
@@ -90,20 +87,11 @@ export default function PasswordPage() {
           <h1 className="text-xl text-[#060606] font-semibold">AI-Care</h1>
           <div className="w-full flex flex-col">
             <div className="w-full flex flex-col mb-2">
-              <h3 className="text-2xl font-semibold mb-2">Đổi mật khẩu</h3>
-              <p className="text-base mb-2">
-                {' '}
-                Hãy thay đổi mật khẩu thường xuyên để tăng tính bảo mật
-              </p>
+              <h3 className="text-2xl font-semibold mb-2">Đặt lại mật khẩu</h3>
+              <p className="text-base mb-2"> Hãy tạo mật khẩu mới của bạn</p>
             </div>
             <form onSubmit={formik.handleSubmit}>
               <div className="w-full flex flex-col">
-                <input
-                  {...formik.getFieldProps('password')}
-                  type="password"
-                  placeholder="Mật khẩu"
-                  className="w-full text-black py-2  my-4 bg-transparent border-b border-black outline-none focus:outline-none"
-                ></input>
                 <input
                   {...formik.getFieldProps('newPassword')}
                   type="password"

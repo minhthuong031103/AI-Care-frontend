@@ -20,6 +20,7 @@ const RenderCards = ({ data, title }) => {
 };
 export default function DiaryPage() {
   const navigate = useNavigate();
+  const _id = localStorage.getItem('_id');
   const [isLoading, setLoading] = useState(false);
   const [allPosts, setAllPosts] = useState(null);
   const [searchText, setSearchText] = useState('');
@@ -32,12 +33,13 @@ export default function DiaryPage() {
     setLoading(true);
     try {
       const response = await fetch(
-        'https://aigeneratingapp.onrender.com/api/v1/post/all',
+        'https://aigeneratingapp.onrender.com/api/v1/post/allofuser',
         {
-          method: 'GET',
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
+          body: JSON.stringify({ _id }),
         }
       );
       if (response.ok) {
