@@ -43,10 +43,11 @@ export default function Login() {
         });
 
         loginPromise.then(function (res) {
-          let { token, _id } = res.data;
-          console.log(token, _id);
+          let { token, _id, username } = res.data;
+
           localStorage.setItem('token', token);
           localStorage.setItem('_id', _id);
+          localStorage.setItem('username', username);
           navigate('/');
         });
         // var exist = 0;

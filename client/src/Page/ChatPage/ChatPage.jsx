@@ -10,6 +10,7 @@ import { getMessageHistory } from './helper';
 
 export const ChatPage = () => {
   const _id = localStorage.getItem('_id');
+  const username = localStorage.getItem('username');
   const [error, setError] = useState(false);
   const [message, setMessage] = useState([]);
   const [input, setInput] = useState('');
@@ -24,26 +25,28 @@ export const ChatPage = () => {
   useState(function () {
     async function load() {
       const MessagePromise = getMessageHistory(_id);
-      console.log('chay ngoai then');
+      //import.meta.env.VITE_firstPrompt
       MessagePromise.then(function (res) {
         setFirstChat(false);
+        const originalString = import.meta.env.VITE_firstPrompt;
+
+        const words = username.split(' ');
+        const _username = words.length > 1 ? words[words.length - 1] : words[0]; //ten
+
+        // Split the originalString at the word "Thường"
+        const replacedString = originalString.replace(/test123456/g, _username);
+
+        // Concatenate the parts with the name in the middle
+
         const conversation = res.data;
         console.log('chay trong then');
-        const processedConversation = conversation.map((item) => {
-          if (item.role === 'user') {
-            const contentParts = item.content.split(
-              ' hãy tư vấn tâm lý cho tôi và chia sẻ với tôi dưới góc độ là một chuyên gia tư vấn tâm lý'
-            );
-            const content = contentParts[0].trim();
-            return {
-              ...item,
-              content: content,
-            };
-          }
-          return item;
-        });
+        const temp = [...conversation];
+        temp[1] = {
+          role: 'user',
+          content: conversation[1].content.split(replacedString),
+        };
 
-        setConversation(processedConversation);
+        setConversation(temp);
       }).catch(function (error) {
         setFirstChat(true);
         console.log('trong catch');
@@ -60,6 +63,8 @@ export const ChatPage = () => {
   const sendMessage = async (data) => {
     setFirstChat(false);
 
+    const words = username.split(' ');
+    const _username = words.length > 1 ? words[words.length - 1] : words[0]; //ten
     setMessage(data.message);
     setLoading(true);
     conversation.push({ role: 'user', content: data.message });
@@ -71,6 +76,7 @@ export const ChatPage = () => {
       {
         message: data.message,
         userID: _id,
+        _username: _username,
         // + ". hãy cho tôi lời khuyên dưới vai trò là nhà tâm lý học."
       }
       //   {
@@ -133,61 +139,57 @@ export const ChatPage = () => {
           }}
           className="w-full float-left"
         >
-          {firstChat ? (
-            <>
-              <p className="font-medium text-gray-500 mb-1">Bot Ngu</p>
-              <div className="flex flex-wrap">
-                <div className="flex w-full gap-3">
-                  <Avatar src="https://img.freepik.com/free-vector/cute-dog-robot-cartoon-character-animal-technology-isolated_138676-3143.jpg?w=740&t=st=1684998540~exp=1684999140~hmac=0b223d11d39b69aaaf8905c8858e60a3ed43da8c7c1fba5c4e5811832ae48f98" />
-                  <CustomParagraph className="shadow rounded-xl bg-secondary min-h-12 font-medium w-fit p-3 container text-black">
-                    Xin chào. Tôi có thể giúp gì cho bạn?
-                  </CustomParagraph>
-                </div>
+          <>
+            <p className="font-medium text-gray-500 mb-1">EmotiBot</p>
+            <div className="flex flex-wrap">
+              <div className="flex w-full gap-3">
+                <Avatar src="https://img.freepik.com/free-vector/cute-dog-robot-cartoon-character-animal-technology-isolated_138676-3143.jpg?w=740&t=st=1684998540~exp=1684999140~hmac=0b223d11d39b69aaaf8905c8858e60a3ed43da8c7c1fba5c4e5811832ae48f98" />
+                <CustomParagraph className="shadow rounded-xl bg-secondary min-h-12 font-medium w-fit p-3 container text-black">
+                  Xin chào. Tôi có thể giúp gì cho bạn?
+                </CustomParagraph>
               </div>
-            </>
-          ) : (
-            <>
-              {conversation?.map((item, index) => {
-                if (item.role === 'user') {
-                  return (
-                    <div key={index} className="w-full float-right">
-                      <p className="font-medium text-black mb-1 text-end">
-                        You
-                      </p>
-                      <div className="flex justify-end gap-3">
-                        <CustomParagraph className="shadow text-black rounded-xl bg-gray-300 min-h-12 font-medium p-3 container w-fit float-right">
+            </div>
+          </>
+
+          <>
+            {conversation?.map((item, index) => {
+              if (item.role === 'user') {
+                return (
+                  <div key={index} className="w-full float-right">
+                    <p className="font-medium text-black mb-1 text-end">You</p>
+                    <div className="flex justify-end gap-3">
+                      <CustomParagraph className="shadow text-black rounded-xl bg-gray-300 min-h-12 font-medium p-3 container w-fit float-right">
+                        {item.content}
+                      </CustomParagraph>
+                      <Avatar>U</Avatar>
+                    </div>
+                  </div>
+                );
+              } else if (item.role === 'assistant') {
+                return (
+                  <div key={index} className="w-full float-left">
+                    <p className="font-medium text-gray-500 mb-1">EmotiBot</p>
+                    <div className="flex flex-wrap">
+                      <div className="flex w-full gap-3">
+                        <Avatar src="https://img.freepik.com/free-vector/cute-dog-robot-cartoon-character-animal-technology-isolated_138676-3143.jpg?w=740&t=st=1684998540~exp=1684999140~hmac=0b223d11d39b69aaaf8905c8858e60a3ed43da8c7c1fba5c4e5811832ae48f98" />
+                        <CustomParagraph className="shadow rounded-xl bg-secondary min-h-12 font-medium w-fit p-3 container text-black">
                           {item.content}
                         </CustomParagraph>
-                        <Avatar>U</Avatar>
                       </div>
                     </div>
-                  );
-                } else if (item.role === 'assistant') {
-                  return (
-                    <div key={index} className="w-full float-left">
-                      <p className="font-medium text-gray-500 mb-1">Bot Ngu</p>
-                      <div className="flex flex-wrap">
-                        <div className="flex w-full gap-3">
-                          <Avatar src="https://img.freepik.com/free-vector/cute-dog-robot-cartoon-character-animal-technology-isolated_138676-3143.jpg?w=740&t=st=1684998540~exp=1684999140~hmac=0b223d11d39b69aaaf8905c8858e60a3ed43da8c7c1fba5c4e5811832ae48f98" />
-                          <CustomParagraph className="shadow rounded-xl bg-secondary min-h-12 font-medium w-fit p-3 container text-black">
-                            {item.content}
-                          </CustomParagraph>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                }
-                return null; // Return null for any other role
-              })}
-            </>
-          )}
+                  </div>
+                );
+              }
+              return null; // Return null for any other role
+            })}
+          </>
         </motion.div>
       </div>
 
       {isLoading && (
         <>
           <div className="w-full float-left">
-            <p className="font-medium text-gray-500 mb-1">Bot Ngu</p>
+            <p className="font-medium text-gray-500 mb-1">EmotiBot</p>
             <div className="flex flex-wrap">
               <div className="flex w-full gap-3">
                 <Avatar src="https://img.freepik.com/free-vector/cute-dog-robot-cartoon-character-animal-technology-isolated_138676-3143.jpg?w=740&t=st=1684998540~exp=1684999140~hmac=0b223d11d39b69aaaf8905c8858e60a3ed43da8c7c1fba5c4e5811832ae48f98" />
@@ -201,7 +203,7 @@ export const ChatPage = () => {
                   </CustomParagraph>
                 )}
               </div>
-              <div className="flex justify-center w-full">
+              {/* <div className="flex justify-center w-full">
                 <Button
                   type="outline"
                   onClick={clearConservation}
@@ -218,7 +220,7 @@ export const ChatPage = () => {
                     </>
                   )}
                 </Button>{' '}
-              </div>
+              </div> */}
             </div>
           </div>
         </>

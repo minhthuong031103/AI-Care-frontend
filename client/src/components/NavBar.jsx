@@ -22,6 +22,8 @@ const Navbar = () => {
     setActivePage('/login');
     localStorage.removeItem('token');
     localStorage.removeItem('_id');
+    localStorage.removeItem('username');
+    localStorage.removeItem('session');
     navigate('/login');
   };
 

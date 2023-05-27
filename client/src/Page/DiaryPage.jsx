@@ -3,6 +3,7 @@ import FormField from '../components/Diary/FormField';
 import Loader from '../components/Loader';
 import Card from '../components/Diary/Card';
 import { Link, useNavigate } from 'react-router-dom';
+import Footer from '../components/Footerr';
 
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
@@ -74,7 +75,7 @@ export default function DiaryPage() {
   };
 
   return (
-    <section className="max-w-7xl mx-auto">
+    <section className="max-w-7xl mt-[100px] mx-auto">
       <div>
         <h1 className=" text-[#222328] text-[32px]">Nhật ký</h1>
         <p className="mt-2 text-[#666e75] text-[14px] max-w-[500px]">
@@ -136,6 +137,7 @@ export default function DiaryPage() {
           </>
         )}
       </div>
+      <Footer></Footer>
     </section>
   );
 }
