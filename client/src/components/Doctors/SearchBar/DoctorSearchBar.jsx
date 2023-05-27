@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+import FormField from '../../Diary/FormField';
 
 const DoctorSearchBar = ({
   formSubmit,
@@ -7,20 +7,33 @@ const DoctorSearchBar = ({
   handleSearchKey,
   clearSearch,
 }) => (
-  <div className="searchBar-wrap">
-    <form onSubmit={formSubmit}>
-      <input
+  <div className="searchBar-wrap w-fit-content mx-auto my-10 p-2 rounded-md">
+    <div className="mt-10 ">
+      <FormField
+        labelName="Tìm kiếm"
+        type="text"
+        name="text"
+        placeholder="Tìm kiếm bác sĩ theo thành phố, tỉnh thành..."
+        value={value}
+        handleChange={handleSearchKey}
+      />
+    </div>
+    <form onSubmit={formSubmit} className="mt-10">
+      {/* <input
         type="text"
         placeholder="Tìm kiếm bác sĩ theo thành phố, tỉnh thành..."
         value={value}
         onChange={handleSearchKey}
-      />
-      {value && <span onClick={clearSearch}>X</span>}
+        className="outline-none border-none w-full sm:w-500"
+      /> */}
+      {value && (
+        <span className="pr-2 cursor-pointer" onClick={clearSearch}>
+          X
+        </span>
+      )}
       <button
         type="submit"
-        className="w-30 text-white my-2 bg-[#060606] 
-          rounded-md px-8 py-5 text-center
-           flex items-center justify-center"
+        className="px-4 py-2 sm:px-8 sm:py-2 bg-[#0f52ba] text-white rounded-md"
       >
         Tìm kiếm
       </button>
