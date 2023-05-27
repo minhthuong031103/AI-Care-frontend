@@ -1,5 +1,5 @@
 // import { ChatGPTUnofficialProxyAPI } from "chatgpt";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Form, Input, Button, Avatar } from 'antd';
 import { request } from './';
 import { SendOutlined, RedoOutlined, StopOutlined } from '@ant-design/icons';
@@ -7,6 +7,7 @@ import { CustomParagraph } from './antd-custom/CustomTypography';
 import { CustomMessage } from './antd-custom/CustomMessage';
 import { motion } from 'framer-motion';
 import { getMessageHistory } from './helper';
+import { useFormik } from 'formik';
 
 export const ChatPage = () => {
   const _id = localStorage.getItem('_id');
@@ -16,49 +17,121 @@ export const ChatPage = () => {
   const [input, setInput] = useState('');
   const [response, setResponse] = useState([]);
   const [conversation, setConversation] = useState([]);
+  const [conversationTemp, setConversationTemp] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [firstChat, setFirstChat] = useState(true);
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
-  };
 
-  useState(function () {
+  const formik = useFormik({
+    initialValues: {
+      input: input,
+    },
+    enableReinitialize: true,
+    validateOnBlur: false,
+    validateOnChange: false,
+    onSubmit: async function (values) {
+      setInput('');
+      setFirstChat(false);
+
+      const words = username.split(' ');
+      const _username = words.length > 1 ? words[words.length - 1] : words[0]; //ten
+      setMessage(values.input);
+      setLoading(true);
+      conversation.push({ role: 'user', content: values.input });
+      setConversation(conversation);
+
+      request(
+        'post',
+        'api/chatgpt/confide',
+        {
+          message: values.input,
+          userID: _id,
+          _username: _username,
+          // + ". hãy cho tôi lời khuyên dưới vai trò là nhà tâm lý học."
+        }
+        //   {
+        //     // timeout: 5000, // Override the default timeout for this request
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //   }
+      )
+        .then((res) => {
+          console.log(res);
+          conversation.push({ role: 'assistant', content: res.data });
+          setConversation(conversation);
+          setLoading(false);
+          setInput(null);
+          console.log(conversation);
+          try {
+            if (res && res.status !== 200) {
+              CustomMessage(
+                { content: 'Lỗi hệ thống! Vui lòng thử lại sau 1' },
+                'error'
+              );
+              setError(true);
+            } else {
+              setResponse(res.data);
+            }
+          } catch (e) {
+            CustomMessage(
+              { content: 'Lỗi hệ thống! Vui lòng thử lại sau 2' },
+              'error'
+            );
+            setError(true);
+          }
+        })
+        .catch((e) => {
+          CustomMessage(
+            { content: 'Lỗi hệ thống! Vui lòng thử lại sau 3' },
+            'error'
+          );
+          setError(true);
+        });
+
+      //   .catch((error) =>
+      //     CustomMessage("Lỗi hệ thống! Vui lòng thử lại sau", "error")
+      //   );
+
+      // api/chatgpt/chat
+    },
+  });
+  useEffect(function () {
     async function load() {
       const MessagePromise = getMessageHistory(_id);
       //import.meta.env.VITE_firstPrompt
       MessagePromise.then(function (res) {
         setFirstChat(false);
-        const originalString = import.meta.env.VITE_firstPrompt;
+        // const originalString = import.meta.env.VITE_firstPrompt;
 
-        const words = username.split(' ');
-        const _username = words.length > 1 ? words[words.length - 1] : words[0]; //ten
+        // const words = username.split(' ');
+        // const _username = words.length > 1 ? words[words.length - 1] : words[0]; //ten
 
-        // Split the originalString at the word "Thường"
-        const replacedString = originalString.replace(/test123456/g, _username);
+        // // Split the originalString at the word "Thường"
+        // const replacedString = originalString.replace(/test123456/g, _username);
 
-        // Concatenate the parts with the name in the middle
+        // // Concatenate the parts with the name in the middle
 
-        const conversation = res.data;
-        console.log('chay trong then');
-        const temp = [...conversation];
-        temp[1] = {
-          role: 'user',
-          content: conversation[1].content.split(replacedString),
-        };
+        // const conversation = res.data;
+        // console.log('chay trong then');
+        // const temp = [...conversation];
+        // temp[1] = {
+        //   role: 'user',
+        //   content: conversation[1].content.split(replacedString),
+        // };
+        console.log(res);
+        const extracted = res.data.slice();
 
-        setConversation(temp);
+        setConversation(extracted);
       }).catch(function (error) {
         setFirstChat(true);
-        console.log('trong catch');
+        console.log(error);
       });
     }
 
     load();
   }, []);
-  const clearConservation = () => {
-    setMessage(null);
-    setResponse(null);
-    setError(false);
+  const handleChange = (event) => {
+    setInput(event.target.value);
   };
   const sendMessage = async (data) => {
     setFirstChat(false);
@@ -153,7 +226,7 @@ export const ChatPage = () => {
 
           <>
             {conversation?.map((item, index) => {
-              if (item.role === 'user') {
+              if (index >= 3 && item.role === 'user') {
                 return (
                   <div key={index} className="w-full float-right">
                     <p className="font-medium text-black mb-1 text-end">You</p>
@@ -165,7 +238,7 @@ export const ChatPage = () => {
                     </div>
                   </div>
                 );
-              } else if (item.role === 'assistant') {
+              } else if (index >= 4 && item.role === 'assistant') {
                 return (
                   <div key={index} className="w-full float-left">
                     <p className="font-medium text-gray-500 mb-1">EmotiBot</p>
@@ -226,53 +299,50 @@ export const ChatPage = () => {
         </>
       )}
 
-      <Form
+      <form
         name="chatbox"
-        onFinish={sendMessage}
+        onSubmit={formik.handleSubmit}
+        onChange={handleChange}
         autoComplete="off"
         className=" z-10 relative h-fit bottom-0 flex align-center gap-2 w-full p-3 bg-white/[0.8] shadow"
       >
-        <Form.Item name="message" className="w-full mb-1">
-          {!isLoading ? (
-            <input
-              value={input}
-              onChange={handleInputChange}
-              placeholder="Nhập tâm tư"
-              size="large"
-              className="relative shadow appearance-none border border-gray-400 rounded w-full py-2 px-3 text-grey-darker leading-tight rounded-xl"
-            />
-          ) : (
-            <input
-              value={input}
-              placeholder="Nhập tâm tư"
-              size="large"
-              className="shadow appearance-none border border-gray-400 rounded w-full py-2 px-3 text-grey-darker leading-tight rounded-xl"
-            />
-          )}
-        </Form.Item>
-        <Form.Item className="w-fit mb-1">
-          {!isLoading && input ? (
-            <Button
-              type="submit"
-              htmlType="submit"
-              size="large"
-              className="bg-[#11009E] rounded-full shadow text-white"
-            >
-              <SendOutlined />
-            </Button>
-          ) : (
-            <Button
-              type="outline"
-              htmlType="submit"
-              size="large"
-              className="bg-[#11009E] rounded-full shadow text-gray-300"
-              disabled
-            >
-              <SendOutlined />
-            </Button>
-          )}
-        </Form.Item>
-      </Form>
+        {!isLoading ? (
+          <input
+            {...formik.getFieldProps('input')}
+            placeholder="Nhập tâm tư"
+            size="large"
+            className="relative shadow appearance-none border border-gray-400 rounded w-full py-2 px-3 text-grey-darker leading-tight rounded-xl"
+          />
+        ) : (
+          <input
+            value={input}
+            placeholder="Nhập tâm tư"
+            size="large"
+            className="shadow appearance-none border border-gray-400 rounded w-full py-2 px-3 text-grey-darker leading-tight rounded-xl"
+          />
+        )}
+
+        {!isLoading && input ? (
+          <Button
+            type="submit"
+            htmlType="submit"
+            size="large"
+            className="bg-[#11009E] rounded-full shadow text-white"
+          >
+            <SendOutlined />
+          </Button>
+        ) : (
+          <Button
+            type="outline"
+            htmlType="submit"
+            size="large"
+            className="bg-[#11009E] rounded-full shadow text-gray-300"
+            disabled
+          >
+            <SendOutlined />
+          </Button>
+        )}
+      </form>
     </div>
   );
 };
