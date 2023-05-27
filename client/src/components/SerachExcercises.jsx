@@ -70,47 +70,14 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
         />
         <Button type="Button" onClick={handleSearch}>
           <p
-            className="font-inter font-medium bg-[#27374D] text-white px-4 py-2
-            rounded-md ml-4"
+            className="font-inter font-medium bg-blue-500 text-white px-4 py-2 rounded-md ml-4"
           >
             Tìm kiếm
           </p>
         </Button>
-        {/* <Button
-          className="search-btn"
-          sx={{
-            bgcolor: '#FF2625',
-            color: '#fff',
-            textTransform: 'none',
-            width: { lg: '173px', xs: '80px' },
-            height: '56px',
-            position: 'absolute',
-            right: '0px',
-            fontSize: { lg: '20px', xs: '14px' },
-          }}
-          onClick={handleSearch}
-        >
-          Search
-        </Button> */}
       </Box>
-      <Box sx={{ position: 'relative', width: '100%', p: '20px' }}>
-        <HorizontalScrollbar
-          data={bodyParts}
-          bodyParts
-          setBodyPart={setBodyPart}
-          bodyPart={bodyPart}
-          setExercises={setExercises}
-        />
-      </Box>
-      <Typography
-        variant="h4"
-        fontWeight="bold"
-        sx={{ fontSize: { lg: '44px', xs: '30px' } }}
-        mb="46px"
-      >
-        Kết quả tìm kiếm
-      </Typography>
     </Stack>
+
   );
 };
 

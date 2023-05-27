@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Stack, Typography } from '@mui/material';
+import 'tailwindcss/tailwind.css';
 
 import HeroBannerImage from '../assets/images/banner2.jpg';
 import HeroBannerImage1 from '../assets/images/banner3.jpg';
@@ -8,7 +9,7 @@ import HeroBannerImage3 from '../assets/images/banner5.jpg';
 export default function HeroBanner() {
   return (
     <>
-      <Box position="relative" p="20px">
+      <Box position="relative" pt="50px" pr="20px" pl="20px" >
         <Typography
           color="#F2BED1"
           fontWeight={700}
@@ -16,7 +17,7 @@ export default function HeroBanner() {
           mb="23px"
           mt="30px"
         >
-          Mồ hôi, nụ cười và sự cố gắng
+          <h1 className='text-blue-500'>Mồ hôi, nụ cười và sự cố gắng</h1>
         </Typography>
         <Typography fontSize="22px" fontFamily="Alegreya" lineHeight="35px">
           Hãy thử ngay các bài tập luyện sức khỏe của chúng tôi để bạn có một cơ
@@ -26,18 +27,8 @@ export default function HeroBanner() {
         <Stack>
           <a
             href="#exercises"
-            style={{
-              marginTop: '45px',
-              textDecoration: 'none',
-              width: '200px',
-              textAlign: 'center',
-              background: '#FF2625',
-              padding: '14px',
-              fontSize: '22px',
-              textTransform: 'none',
-              color: 'white',
-              borderRadius: '4px',
-            }}
+            className="mt-4 bg-blue-500 text-white py-3 px-4 text-lg rounded-md w-[200px] flex justify-center"
+            style={{ textDecoration: 'none' }}
           >
             Thử tập ngay
           </a>

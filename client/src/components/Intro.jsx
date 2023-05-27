@@ -5,55 +5,55 @@ const Intro = () => {
     <div className='w-full'>
       <div>
         <div className='flex flex-col items-center justify-center mx-10 mt-[0] gap-8 md:flex-row'>
-          <img src={"/images/orientation.png"} alt="orientation" className='w-[300px] h-[300px]' />
+          <img src={"/images/pic1.png"} alt="orientation" className='w-[300px] h-[300px]' />
           <h2 className='text-2xl font-bold'>
-            Định hướng nghề nghiệp
+            Hiểu hơn về trầm cảm
             <p className='font-normal text-justify'>
-              Hiện nay có rất nhiều sinh viên hoang mang tương lai sẽ làm công việc gì mới phù hợp với bản thân, cần rèn luyện bản thân như thế nào để đáp ứng yêu cầu của nhà tuyển dụng. <span className='text-[#003398] font-bold'>UIT.ai</span> ứng dụng ChatGPT giúp học sinh  có thể tiếp cận những thông tin mới nhất về xu hướng và thị trường lao động, từ đó sinh viên có định hướng về nghề nghiệp phù hợp và đưa ra lộ trình học tập để có thể tự tin và kiên định trong lựa chọn con đường sự nghiệp.
+              Trầm cảm không phải lúc nào cũng là một cô gái đang khóc trong phòng tắm hay một cậu bé không bao giờ ra khỏi nhà. Trầm cảm không phải lúc nào cũng là những tờ giấy nguệch ngoạc được để lại hay những viên thuốc trên sàn nhà. Mà đôi khi nó còn ẩn sau những nụ cười gượng, những tấm bằng khen, thậm chí còn là những chàng trai cô gái luôn tốt bụng. Trầm cảm không đáng sợ mà là đáng thương.
             </p>
           </h2>
         </div>
         <div className='flex flex-col items-center justify-center mx-10 mt-[20px] gap-8 md:flex-row-reverse'>
-          <img src={"/images/worry.png"} alt="orientation" className='w-[300px] h-[300px]' />
+          <img src={"/images/pic2.png"} alt="orientation" className='w-[300px] h-[300px]' />
           <h2 className='text-2xl font-bold'>
-            Tư vấn tâm lý
+            Học cách yêu thương những người xung quanh
             <p className='font-normal text-justify'>
-              Có những điều khó nói nhưng vẫn cần được lắng nghe! Chức năng tư vấn tâm lý của <span className='text-[#003398] font-bold'>UIT.ai</span> thông qua chatbot ứng dụng ChatGPT sẽ giúp các bạn sinh viên có thể chia sẻ những suy nghĩ, cảm xúc một cách tự nhiên và thoải mái nhất. Thông qua câu trả lời từ Chatbot, các bạn có thể hiểu rõ hơn về vấn đề của mình và đưa ra quyết định đúng đắn, tránh những hành động nóng vội. Hơn nữa, chức năng tư vấn tâm lý cho sinh viên còn giúp các bạn có được sự hỗ trợ tâm lý liên tục mọi lúc mọi nơi, không bị giới hạn thời gian hay địa điểm. Điều này giúp các bạn sinh viên luôn có được tâm lý và sức khỏe tốt nhất để hoàn thành tốt các nhiệm vụ học tập và đạt được thành tích tốt nhất.
+              Trầm cảm là bệnh, không phải lựa chọn. Nó bắt đầu từ lúc ta gặp vấn đề về giấc ngủ, khi mà mọi người có thể ngả lưng trên chiếc giường êm ấm và say giấc thì những người trầm cảm phải trằn trọc đến sáng bởi những suy nghĩ ngổn ngang. Người trầm cảm không phải kẻ yếu đuối, họ luôn cố gắng tìm cho mình một tia sáng, có những người may mắn khi được ai đó chia sẻ và đồng hành, nhưng cũng có người không được ai thấu hiểu, lắng nghe. Trầm cảm không phải lúc nào cũng dễ nhận ra và không phải ai cũng đủ mạnh mẽ để chiến đấu một mình. Vì vậy hãy luôn quan tâm và yêu thương những người xung quanh để góp phần nâng cao sức khỏe tinh thần cộng đồng. 
             </p>
           </h2>
         </div>
         <div className='flex flex-col items-center justify-center mx-10 mt-[20px] gap-8 md:flex-row'>
-          <img src={"/images/homework.png"} alt="orientation" className='w-[300px] h-[300px]' />
+          <img src={"/images/pic3.png"} alt="orientation" className='w-[300px] h-[300px]' />
           <h2 className='text-2xl font-bold'>
-            Hỗ trợ học tập
+            Hãy luôn mạnh mẽ và không ngừng tin tưởng bản thân.
             <p className='font-normal text-justify'>
-              Đôi khi việc tìm tài liệu và hướng đi để giải quyết các bài toán, vấn đề trong học tập thì quá tốn thời gian, <span className='text-[#003398] font-bold'>UIT.ai</span> với cơ chế ứng dụng ChatGPT sẽ giúp các sinh viên tiết kiệm thời gian, hiểu hơn về các vấn đề học tập một cách linh hoạt và đa dạng. Các tài liệu sẽ giúp các sinh viên có những kiến thức mới, cơ hội học tập tốt hơn, thành tích cao hơn.
+              Dù cuộc sống có trở nên khó khăn đến đâu, hãy nhớ rằng trong bạn vẫn luôn tồn tại một sức mạnh vô hạn để vượt qua mọi khó khăn. Hãy tin tưởng vào khả năng của chính mình, hãy nhớ rằng bạn không đơn độc trong cuộc hành trình này và mỗi ngày mới sẽ là một cơ hội để bạn khám phá tiềm năng và tìm thấy ý nghĩa trong cuộc sống từ những điều nhỏ bé đến lớn lao. 
             </p>
           </h2>
         </div>
       </div>
-      <div className='flex flex-col md:flex-row justify-center mt-[20px] mb-[40px] ml-[30px]'>
+      <div className='flex flex-col gap gap-5 md:flex-row justify-center mt-[20px] mb-[40px] ml-[30px]'>
         <div className='flex flex-col items-center justify-center'>
           <img src={"/images/chatbot.png"} alt="chatbot" className='w-[200px] h-[200px]' />
-          <h3 className='text-xl font-bold'>
-            Nhận trợ giúp khi bạn cần
-            <p className='w-[300px] font-normal'>Trí tuệ nhân tạo tiên tiến của chúng tôi đang hoạt động 24 giờ một ngày.</p>
+          <h3 className='text-xl font-bold '>
+            Luôn sẵn sàng lắng nghe, chia sẻ
+            <p className='w-[300px] font-normal'>EmotiBot sẽ luôn là người bạn đồng hành và sẵn sàng lắng nghe, đưa ra lời khuyên hữu ích.</p>
           </h3>
         </div>
 
         <div className='flex flex-col items-center justify-center'>
           <img src={"/images/idea.png"} alt="chatbot" className='w-[200px] h-[200px]' />
           <h3 className='text-xl font-bold'>
-            Không ngừng cải tiến, tái tạo
-            <p className='w-[300px] font-normal'>Việc tái tạo mỗi ngày giúp các câu trả lời chính xác nhưng không rập khuôn.</p>
+            Không ngừng cải tiến
+            <p className='w-[300px] font-normal'>Luôn cố gắng sáng tạo, phát triển chức năng để hỗ trợ chăm sóc sức khỏe tinh thần tốt nhất.</p>
           </h3>
         </div>
 
         <div className='flex flex-col items-center justify-center'>
           <img src={"/images/click.png"} alt="chatbot" className='w-[200px] h-[200px]' />
           <h3 className='text-xl font-bold'>
-            Click
-            <p className='w-[300px] font-normal'>Chỉ thông qua vài cú click, bất cứ đâu cũng có thể hỗ trợ.</p>
+            Giao diện thân thiện, dễ sử dụng
+            <p className='w-[300px] font-normal'>Giao diện mang đến cảm giác thoải mái, dễ dùng với bất kỳ lứa tuổi nào</p>
                   </h3>
               </div>
           </div>

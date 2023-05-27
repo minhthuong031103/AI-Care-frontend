@@ -3,6 +3,7 @@ import HeroBanner from '../components/HeroBanner';
 import SearchExercises from '../components/SerachExcercises';
 import Exercises from '../components/Exercises';
 import { useState } from 'react';
+import Footerr from '../components/Footerr';
 
 export default function HomeExcercise() {
   const [bodyPart, setBodyPart] = useState('all');
@@ -10,7 +11,7 @@ export default function HomeExcercise() {
   return (
     <>
       <Box style={{ backgroundColor: '#f5f5f5f5' }}>
-        <HeroBanner />
+        <HeroBanner/>
         <SearchExercises
           setExercises={setExercises}
           bodyPart={bodyPart}
@@ -22,6 +23,7 @@ export default function HomeExcercise() {
           bodyPart={bodyPart}
         />
       </Box>
+      <Footerr/>
     </>
   );
 }

@@ -14,7 +14,7 @@ const Footer = () => {
             </h1>
           </div>
 
-          <div className='flex justify-center w-full sm:max-w-[200px] mt-0'>
+          <div className='flex justify-center w-full sm:max-w-[200px] mt-0 cursor-pointer'>
             <FaFacebook className='icon text-[#1b74e4] mr-4' size={30} />
             <FaInstagram className='icon text-[#f14d4b] mr-4' size={30} />
             <AiTwotoneMail className='icon text-red-600' size={30} />

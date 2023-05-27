@@ -12,7 +12,7 @@ export default function HomeTest() {
       {/* <img className="absolute w-[45%] h-[80%] z-20 top-[48%] left-[52%] transform -translate-x-1/2" src={"/images/demo1.png"} alt="demo1" /> */}
       
       <div className="w-full">
-        <Benefit />
+        <Benefit/>
         <Intro />
         <Footerr />
       </div>

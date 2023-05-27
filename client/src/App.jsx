@@ -31,7 +31,7 @@ function App() {
 
       <main className="w-full px-[4px] bg-[#f9fafe] min-h-[calc(100vh-73px)]">
         <Routes>
-          <Route path="/hometest" element={<HomeTest></HomeTest>} />
+          <Route path="/" element={<HomeTest></HomeTest>} />
           <Route path="/document" element={<Blog></Blog>} />
           <Route path="/exercise" element={<HomeExcercise></HomeExcercise>} />
           <Route path="/exercise/:id" element={<ExerciseDetail />} />

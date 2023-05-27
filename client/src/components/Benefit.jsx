@@ -5,7 +5,7 @@ import { AiFillEdit, AiTwotoneFire } from 'react-icons/ai';
 
 const Benefit = () => {
   return (
-    <div className='w-full h-full min-h-screen'>
+    <div className='w-full h-full min-h-screen mb-[-15px]'>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-8 justify-center text-center my-8 md:my-16'>
         <div className="col-span-1">
           <div>
