@@ -95,7 +95,7 @@ export default function Login() {
               <h3 className="text-2xl font-semibold mb-2">Đăng nhập</h3>
               <p className="text-base mb-2">
                 {/* Welcome! Please enter your details */}
-                Hãy đăng nhập sử dụng các dịch vụ của chúng tôi một cách trọn
+                Hãy đăng nhập để sử dụng các dịch vụ của chúng tôi một cách trọn
                 vẹn <br />
               </p>
             </div>
