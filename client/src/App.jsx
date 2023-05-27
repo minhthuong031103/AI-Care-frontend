@@ -23,6 +23,7 @@ import OtpPage from './Page/Forget/OtpPage';
 import ResetPage from './Page/Forget/ResetPage';
 import Blog from './Page/Blog';
 import { AuthorizedUser, LoggedUser } from './Page/authenticate';
+import { BlogDetail } from './Page/BlogDetail/BlogDetail';
 function App() {
   const [count, setCount] = useState(0);
 
@@ -34,6 +35,7 @@ function App() {
         <Routes>
           <Route path="/hometest" element={<HomeTest></HomeTest>} />
           <Route path="/document" element={<Blog></Blog>} />
+          <Route path="/details/:id" element={<BlogDetail></BlogDetail>} />
           <Route path="/exercise" element={<HomeExcercise></HomeExcercise>} />
           <Route path="/exercise/:id" element={<ExerciseDetail />} />
           <Route
