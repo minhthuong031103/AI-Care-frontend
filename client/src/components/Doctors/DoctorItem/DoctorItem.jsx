@@ -18,10 +18,12 @@ const DoctorItem = ({
         <div className="flex items-end mt-10 justify-end">
           <button type="Button">
             <p
-              className="font-inter font-medium bg-[#A5C0DD] text-[#0C134F] px-4 py-2
+              className="font-inter font-medium bg-blue-500 text-white px-4 py-2
           rounded-md "
-            >
-              ➝
+            > 
+              <p className>
+                ➝
+              </p>
             </p>
           </button>
         </div>

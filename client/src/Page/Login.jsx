@@ -86,7 +86,7 @@ export default function Login() {
               Hãy tìm đến chúng tôi
             </p>
           </div>
-          <img src={bg} className="w-full h-full object-cover"></img>
+          <img src='https://images.unsplash.com/photo-1577579389481-aad9b0e251c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=429&q=80' className="w-full h-full object-cover"></img>
         </div>{' '}
         <div className="w-full sm:w-1/2 h-full flex flex-col p-20 justify-between">
           <h1 className="text-xl text-[#060606] font-semibold">AI-Care</h1>
