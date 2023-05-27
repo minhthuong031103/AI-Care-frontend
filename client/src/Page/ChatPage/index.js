@@ -2,7 +2,7 @@ import axios from 'axios';
 // baseURL: 'http://localhost:8080',
 // baseURL: 'https://ai-care.onrender.com'
 export const Axios = axios.create({
-  baseURL: 'https://ai-care.onrender.com',
+  baseURL: 'http://localhost:8080',
 });
 
 export const request = async (method, path, param) => {
