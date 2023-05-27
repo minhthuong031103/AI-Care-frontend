@@ -87,14 +87,15 @@ export default function Login() {
           </div>
           <img src={bg} className="w-full h-full object-cover"></img>
         </div>{' '}
-        <div className="w-full sm:w-3/4 h-full flex flex-col p-20 justify-between">
+        <div className="w-full sm:w-1/2 h-full flex flex-col p-20 justify-between">
           <h1 className="text-xl text-[#060606] font-semibold">AI-Care</h1>
           <div className="w-full flex flex-col">
             <div className="w-full flex flex-col mb-2">
               <h3 className="text-2xl font-semibold mb-2">Đăng nhập</h3>
               <p className="text-base mb-2">
                 {/* Welcome! Please enter your details */}
-                Hãy đăng nhập sử dụng các dịch vụ một cách trọn vẹn <br />
+                Hãy đăng nhập sử dụng các dịch vụ của chúng tôi một cách trọn
+                vẹn <br />
               </p>
             </div>
             <form onSubmit={formik.handleSubmit}>
@@ -124,7 +125,7 @@ export default function Login() {
             <div className="w-full flex items-center justify-between">
               <div className="w-full flex">
                 <p className="text-sm font-medium whitespace-nowrap cursor-pointer underline underline-offset-2">
-                  <Link to="forgot"> Quên mật khẩu</Link>
+                  <Link to="/forgot"> Quên mật khẩu</Link>
                 </p>
               </div>
             </div>

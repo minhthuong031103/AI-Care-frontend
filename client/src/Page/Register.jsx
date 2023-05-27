@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import bgregister from '../assets/images/bgforgot.jpg';
+import bgregister from '../assets/images/bgregister.jpg';
 import { useFormik } from 'formik';
 import toast, { Toaster } from 'react-hot-toast';
 import { registerUser } from '../helper/loginHelper';
@@ -67,28 +67,29 @@ export default function Register() {
           return 0;
         }
         var exist = 0;
+        const toastId = toast.loading('Đang xử lý...');
         let createPromise = registerUser(values);
-        await createPromise.then(function (res) {
-          console.log(res);
-          if (res === 'Email exist') {
-            toast.error('Email đã được đăng ký, hãy đăng ký email khác!');
-            exist = 1;
-          } else if (res === 'Phone exist') {
-            toast.error('Số điện thoại đã được đăng ký, hãy đăng ký số khác!');
-            exist = 1;
-          }
-        });
-        if (exist) return 0;
-        else {
-          await toast.promise(createPromise, {
-            loading: 'Đăng ký...',
-            success: (
-              <b>Đăng ký thành công! Hãy đăng nhập bằng tài khoản vừa tạo</b>
-            ),
-            error: <b>Có lỗi xảy ra, vui lòng thử lại</b>,
+        createPromise
+          .then(function (res) {
+            toast.dismiss(toastId);
+            console.log(res);
+            if (res === 'Email exist') {
+              toast.error('Email đã được đăng ký, hãy đăng ký email khác!');
+            } else if (res === 'Phone exist') {
+              toast.error(
+                'Số điện thoại đã được đăng ký, hãy đăng ký số khác!'
+              );
+            } else if (res === 'ok') {
+              toast.success('Đăng ký thành công!');
+              setTimeout(() => {
+                navigate('/login');
+              }, 1500);
+            }
+          })
+          .catch(function (error) {
+            toast.dismiss(toastId);
+            toast.error('Đăng ký thất bại, xin vui lòng thử lại');
           });
-        }
-        console.log(values);
       } catch (error) {
         console.log(error);
       }
@@ -98,18 +99,16 @@ export default function Register() {
     <>
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <div className="w-full bg-[#f5f5f5f5] h-screen flex items-start">
-        <div className="relative w-1/2 h-full flex flex-col hidden sm:block ">
+        <div className="relative w-[50%] h-full flex flex-col hidden sm:block ">
           <div className="absolute top-[10%] left-[10%] flex flex-col">
-            <h1 className="text-4xl text-white font-normal">
-              Tham gia cộng đồng AI-Care
-            </h1>
+            <h1 className="text-4xl text-white font-normal">AI-Care</h1>
             <p className="text-xl text-white font-normal">
               Tạo tài khoản của bạn
             </p>
           </div>
           <img src={bgregister} className="w-full h-full object-cover"></img>
         </div>{' '}
-        <div className="w-full sm:w-3/4 h-full flex flex-col p-20 justify-between">
+        <div className="w-full sm:w-[50%] h-full flex flex-col p-20 justify-between">
           <h1 className="text-xl text-[#060606] font-semibold">AI-Care</h1>
           <div className="w-full flex flex-col">
             <div className="w-full flex flex-col mb-2">

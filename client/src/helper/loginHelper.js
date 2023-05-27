@@ -4,7 +4,7 @@ import axios from 'axios';
 // axios.defaults.baseURL = 'https://aigeneratingapp.onrender.com';
 // axios.defaults.baseURL = 'https://ai-care.onrender.com/';
 const instance = axios.create({
-  baseURL: 'https://ai-care.onrender.com',
+  baseURL: 'http://localhost:8080',
   // Additional configuration options
 });
 
@@ -15,9 +15,11 @@ export async function registerUser(user) {
     //send email
     if (status === 201) return Promise.resolve('Email exist');
     if (status === 202) return Promise.resolve('Phone exist');
-    return Promise.resolve(data);
+    if (status === 200) return Promise.resolve('ok');
+    return Promise.reject(data);
   } catch (error) {
     console.log(error);
+    return Promise.reject('vcl');
   }
 }
 export async function verifyLogin({ email, password }) {
@@ -40,13 +42,14 @@ export async function getUserbyId(_id) {
 
 export async function updateUser(user, _id) {
   try {
-    const { data, status } = await instance.put('user/updateuser', {
+    const { data, status } = await instance.put('/user/updateuser', {
       user,
       _id,
     });
     if (status === 201) return Promise.resolve('Email exist');
     if (status === 202) return Promise.resolve('Phone exist');
-    return Promise.resolve({ data });
+    if (status === 200) return Promise.resolve('ok');
+    return Promise.reject({ data });
   } catch (error) {
     console.log(error);
   }
@@ -54,7 +57,7 @@ export async function updateUser(user, _id) {
 
 export async function changePassword(user, _id) {
   try {
-    const { data, status } = await instance.put('user/changepassword', {
+    const { data, status } = await instance.put('/user/changepassword', {
       user,
       _id,
     });
@@ -69,7 +72,7 @@ export async function changePassword(user, _id) {
 
 export async function scheduleDoctor(user, doctorName, doctorEmail) {
   try {
-    const { data, status } = await instance.post('doctor/schedule', {
+    const { data, status } = await instance.post('/doctor/schedule', {
       user: user,
       doctorName: doctorName,
       doctorEmail: doctorEmail,
@@ -79,5 +82,45 @@ export async function scheduleDoctor(user, doctorName, doctorEmail) {
     else return Promise.reject({ data });
   } catch (error) {
     console.log(error);
+  }
+}
+export async function sentOTP(email) {
+  try {
+    const { data, status } = await instance.post('/user/forgot', { email });
+    if (status === 201) return Promise.resolve({ message: 'ok', data: data });
+    else if (status === 202)
+      return Promise.resolve({ message: 'ko co', data: data });
+    else return Promise.reject('loi');
+  } catch (error) {
+    console.log(error);
+    return Promise.reject({ error: 'Error when sent OTP' });
+  }
+}
+export async function verifyOTP(_id, otp) {
+  try {
+    const { data, status } = await instance.post('/user/checkotp', {
+      _id,
+      otp,
+    });
+    if (status === 201) return Promise.resolve({ message: 'ok', data: data });
+    else if (status === 203)
+      return Promise.resolve({ message: 'sai', data: data });
+    else return Promise.reject('loi');
+  } catch (error) {
+    console.log(error);
+    return Promise.reject({ error: 'Error when sent OTP' });
+  }
+}
+export async function resetPassword(_id, newPassword) {
+  try {
+    const { data, status } = await instance.put('/user/resetpassword', {
+      _id,
+      newPassword,
+    });
+    if (status === 201) return Promise.resolve({ message: 'ok', data: data });
+    else return Promise.reject('loi');
+  } catch (error) {
+    console.log(error);
+    return Promise.reject({ error: 'Error when sent OTP' });
   }
 }

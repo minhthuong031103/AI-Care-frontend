@@ -61,15 +61,17 @@ function DoctorSchedule() {
         toast.error('Vui lòng để lại lời nhắn!');
         return 0;
       }
-
+      const toastId = toast.loading('Đang xử lý...');
       schedulePromise
         .then(function () {
+          toast.dismiss(toastId);
           toast.success(
             'Đã gửi yêu cầu tư vấn đến bác sĩ thành công, bác sĩ sẽ liên lạc với bạn trong thời gian sớm nhất'
           );
         })
         .catch(function (error) {
           console.log(error);
+          toast.dismiss(toastId);
           toast.error('Có lỗi xảy ra, vui lòng thử lại');
         });
 
@@ -88,9 +90,9 @@ function DoctorSchedule() {
   return (
     <div className="container items-center mx-auto">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
-      <div className="flex justify-center items-center  h-auto ">
-        <div className={style.glass}>
-          <div className="title flex flex-col items-center">
+      <div className="flex justify-center items-center h-auto">
+        <div className="bg-f8e8ee sm:bg-transparent justify-items-center rounded-3xl shadow-lg sm:backdrop-filter sm:backdrop-blur-md border-4 border-opacity-30 border-gray-50 flex-shrink-0 w-full sm:w-auto py-20 px-7">
+          <div className="title flex flex-col justify-between items-center">
             <h4 className="text-3xl font-bold">Phiếu liên hệ tư vấn tâm lý</h4>
             <span className="py-4 text-xl w-2/3 text-center text-gray-500">
               Bác sĩ {doctor.name}
@@ -98,7 +100,7 @@ function DoctorSchedule() {
             <span className="py-4 text-xl w-2/3 text-center text-gray-500">
               Địa chỉ {doctor.address}
             </span>
-            <span className="py-4 text-sm w-2/3 text-start text-gray-500">
+            <span className="py-4 text-sm w-2/3 text-center text-gray-500">
               Hãy điền các đầy đủ và chính xác các thông tin để chúng tôi có thể
               liên hệ với bạn
             </span>
@@ -109,37 +111,35 @@ function DoctorSchedule() {
                 {...formik.getFieldProps('name')}
                 type="text"
                 placeholder="Họ và tên"
-                className="w-1/2 text-black py-2  my-4 bg-transparent border-b border-black outline-none focus:outline-none"
-              ></input>
+                className="w-full sm:w-1/2 text-black py-2 my-4 bg-transparent border-b border-black outline-none focus:outline-none"
+              />
 
               <input
                 {...formik.getFieldProps('email')}
                 type="email"
                 placeholder="Email"
-                className="w-1/2 text-black py-2  my-4 bg-transparent border-b border-black outline-none focus:outline-none"
-              ></input>
+                className="w-full sm:w-1/2 text-black py-2 my-4 bg-transparent border-b border-black outline-none focus:outline-none"
+              />
 
-              <div className=" textbox flex flex-col gap-6 items-center w-full">
+              <div className="textbox flex flex-col gap-6 items-center w-full">
                 <input
                   {...formik.getFieldProps('phone')}
                   type="tel"
                   pattern="^0\d{9,10}$"
                   placeholder="Số điện thoại"
-                  className="w-1/2 text-black py-2  my-4 bg-transparent border-b border-black outline-none focus:outline-none"
-                ></input>
+                  className="w-full sm:w-1/2 text-black py-2 my-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                />
                 <input
                   {...formik.getFieldProps('message')}
                   type="text"
                   placeholder="Lời nhắn"
-                  className="w-3/4 text-black py-2  my-4 bg-transparent border-b border-black outline-none focus:outline-none"
-                ></input>
+                  className="w-full text-black py-2 my-4 bg-transparent border-b border-black outline-none focus:outline-none"
+                />
               </div>
 
               <button
                 type="submit"
-                className="w-30 text-white my-2 bg-[#060606] 
-          rounded-md px-8 py-5 text-center
-           flex items-center justify-center"
+                className="w-full sm:w-30 text-white my-2 bg-[#060606] rounded-md px-8 py-5 text-center flex items-center justify-center"
               >
                 Xác nhận đặt lịch
               </button>

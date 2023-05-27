@@ -5,13 +5,14 @@ const instance1 = axios.create({
   // Additional configuration options
 });
 // axios.defaults.baseURL = 'http://localhost:8080';
-export async function createPost(form) {
+export async function createPost(form, _id) {
   try {
-    const { success } = await instance1.post('/api/v1/post', {
+    const { success } = await instance1.post('/api/v1/post/upload', {
       prompt: form.prompt,
       name: form.name,
       photo: form.photo,
       date: form.date,
+      _userid: _id,
     });
     if (success) return Promise.resolve({ success });
   } catch (error) {

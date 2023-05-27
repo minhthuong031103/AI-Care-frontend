@@ -18,6 +18,9 @@ import { ChatPage } from './Page/ChatPage/ChatPage';
 import DoctorPage from './Page/DoctorPage/DoctorPage';
 import PasswordPage from './Page/PasswordPage';
 import HomeTest from './Page/HomeTest';
+import ForgotPage from './Page/Forget/ForgotPage';
+import OtpPage from './Page/Forget/otpPage';
+import ResetPage from './Page/Forget/ResetPage';
 function App() {
   const [count, setCount] = useState(0);
 
@@ -39,10 +42,13 @@ function App() {
           <Route path="/doctor/:id" element={<DoctorInfor />} />
           <Route path="/doctor/schedule/:id" element={<DoctorSchedule />} />
           <Route path="/chat" element={<ChatPage></ChatPage>}></Route>
+          <Route path="/forgot" element={<ForgotPage></ForgotPage>}></Route>
           <Route
             path="/changepassword/:id"
             element={<PasswordPage></PasswordPage>}
           />
+          <Route path="/otppage/:_id" element={<OtpPage></OtpPage>} />
+          <Route path="/reset/:_id" element={<ResetPage></ResetPage>} />
         </Routes>
       </main>
       {/* <Footer></Footer> */}
