@@ -4,7 +4,7 @@ import { Box, Stack, Typography } from '@mui/material';
 export default function DoctorBanner() {
   return (
     <>
-      <Box position="relative" p="20px">
+      <Box position="relative" mt="100px" p="20px">
         <Typography
           color="#569DAA"
           fontWeight={700}

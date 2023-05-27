@@ -19,9 +19,11 @@ import DoctorPage from './Page/DoctorPage/DoctorPage';
 import PasswordPage from './Page/PasswordPage';
 import HomeTest from './Page/HomeTest';
 import ForgotPage from './Page/Forget/ForgotPage';
-import OtpPage from './Page/Forget/otpPage';
+import OtpPage from './Page/Forget/OtpPage';
 import ResetPage from './Page/Forget/ResetPage';
 import Blog from './Page/Blog';
+import { AuthorizedUser, LoggedUser } from './Page/authenticate';
+import { BlogDetail } from './Page/BlogDetail/BlogDetail';
 function App() {
   const [count, setCount] = useState(0);
 
@@ -33,24 +35,92 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeTest></HomeTest>} />
           <Route path="/document" element={<Blog></Blog>} />
+          <Route path="/details/:id" element={<BlogDetail></BlogDetail>} />
           <Route path="/exercise" element={<HomeExcercise></HomeExcercise>} />
           <Route path="/exercise/:id" element={<ExerciseDetail />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/login"
+            element={
+              <LoggedUser>
+                <Login />
+              </LoggedUser>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <LoggedUser>
+                <Register />
+              </LoggedUser>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <AuthorizedUser>
+                <Profile />
+              </AuthorizedUser>
+            }
+          />
           <Route path="/schedule" element={<DoctorPage />} />
-          <Route path="/diary" element={<DiaryPage />} />
-          <Route path="/diary/upload" element={<Upload />} />
+          <Route
+            path="/diary"
+            element={
+              <AuthorizedUser>
+                <DiaryPage />
+              </AuthorizedUser>
+            }
+          />
+          <Route
+            path="/diary/upload"
+            element={
+              <AuthorizedUser>
+                <Upload />
+              </AuthorizedUser>
+            }
+          />
           <Route path="/doctor/:id" element={<DoctorInfor />} />
           <Route path="/doctor/schedule/:id" element={<DoctorSchedule />} />
-          <Route path="/chat" element={<ChatPage></ChatPage>}></Route>
-          <Route path="/forgot" element={<ForgotPage></ForgotPage>}></Route>
+          <Route
+            path="/chat"
+            element={
+              <AuthorizedUser>
+                <ChatPage></ChatPage>
+              </AuthorizedUser>
+            }
+          ></Route>
+          <Route
+            path="/forgot"
+            element={
+              <LoggedUser>
+                <ForgotPage></ForgotPage>
+              </LoggedUser>
+            }
+          ></Route>
           <Route
             path="/changepassword/:id"
-            element={<PasswordPage></PasswordPage>}
+            element={
+              <AuthorizedUser>
+                <PasswordPage></PasswordPage>
+              </AuthorizedUser>
+            }
           />
-          <Route path="/otppage/:_id" element={<OtpPage></OtpPage>} />
-          <Route path="/reset/:_id" element={<ResetPage></ResetPage>} />
+          <Route
+            path="/otppage/:_id"
+            element={
+              <LoggedUser>
+                <OtpPage></OtpPage>
+              </LoggedUser>
+            }
+          />
+          <Route
+            path="/reset/:_id"
+            element={
+              <LoggedUser>
+                <ResetPage></ResetPage>
+              </LoggedUser>
+            }
+          />
         </Routes>
       </main>
       {/* <Footer></Footer> */}

@@ -42,7 +42,7 @@ export default function FormField({
         required
         className="bg-gray-50 border border-gray-300 text-gray-900
       text-sm rounded-lg focus:ring-[#4649ff] focus:border-[#4649ff]
-      outline-none block w-full p-3"
+      outline-none block  w-full sm:w-[60%] p-3"
       ></input>
     </div>
   );

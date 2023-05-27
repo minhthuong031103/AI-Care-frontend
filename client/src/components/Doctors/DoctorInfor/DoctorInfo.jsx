@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import { Link } from 'react-router-dom';
 import { doctorList } from '../../../Page/config/data';
+import Footer from '../../Footerr';
 
 const DoctorInfor = () => {
   const navigate = useNavigate();
@@ -21,12 +22,12 @@ const DoctorInfor = () => {
   };
   return (
     <>
-      <Link className="blog-goBack" to="/schedule">
+      <Link className="blog-goBack mt-[100px]" to="/schedule">
         <span> &#8592;</span> <span>Quay lại</span>
       </Link>
       {doctor ? (
         <>
-          <div className="blog-wrap">
+          <div className="blog-wrap  w-full h-full">
             <header>
               <p className="blog-date">Địa chỉ: {doctor.address}</p>
               <h1>B.S {doctor.name}</h1>
@@ -40,18 +41,19 @@ const DoctorInfor = () => {
             </header>
             <img src={doctor.avatar} alt="cover" />
             <p className="blog-desc">{doctor.description}</p>
-          </div>
-          <div className="flex justify-center items-center">
-            <button
-              type="button"
-              onClick={Schedule}
-              className="w-50 text-white my-2 bg-[#060606] 
+            <div className="flex justify-center items-center">
+              <button
+                type="button"
+                onClick={Schedule}
+                className="w-50 text-white my-2 bg-[#060606] 
           rounded-md px-8 py-5 text-center
            flex items-center justify-center"
-            >
-              Liên hệ tư vấn ngay
-            </button>
+              >
+                Liên hệ tư vấn ngay
+              </button>
+            </div>
           </div>
+          <Footer></Footer>
         </>
       ) : (
         <h1>cha co gi</h1>

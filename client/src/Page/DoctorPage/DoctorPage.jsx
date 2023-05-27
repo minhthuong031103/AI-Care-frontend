@@ -5,6 +5,7 @@ import DoctorList from '../../components/Doctors/DoctorList/DoctorList';
 import DoctorSearchBar from '../../components/Doctors/SearchBar/DoctorSearchBar';
 
 import DoctorBanner from '../../components/Doctors/DoctorBanner';
+import Footer from '../../components/Footerr';
 
 const DoctorPage = () => {
   const [doctors, setDoctors] = useState(doctorList);
@@ -56,6 +57,7 @@ const DoctorPage = () => {
           </div>
         </section>
       )}
+      <Footer></Footer>
     </div>
   );
 };
