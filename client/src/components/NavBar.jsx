@@ -187,8 +187,6 @@ const Navbar = () => {
                       Nhật ký
                     </Link>
 
-                    
-
                     <Link
                       onClick={() => setActivePage('profile')}
                       activeClass="Services"
@@ -197,12 +195,11 @@ const Navbar = () => {
                       offset={50}
                       duration={500}
                       className={`cursor-pointer hover:bg-blue-500 text-black hover:text-white px-3 py-2 rounded-md text-lg font-medium ${
-                        activePage === 'profile' ? 'bg-[#b5d8f3]' : ''
+                        activePage === 'profile' ? '' : ''
                       }`}
                     >
                       Tài liệu
                     </Link>
-
 
                     <Link
                       onClick={() => setActivePage('profile')}
