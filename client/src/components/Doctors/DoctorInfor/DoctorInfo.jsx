@@ -49,7 +49,7 @@ const DoctorInfor = () => {
           rounded-md px-8 py-5 text-center
            flex items-center justify-center"
             >
-              Đặt lịch khám ngay
+              Liên hệ tư vấn ngay
             </button>
           </div>
         </>

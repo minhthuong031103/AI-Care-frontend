@@ -1,19 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import { MdCloudUpload, MdDelete } from 'react-icons/md';
+import { AiFillFileImage } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import preview from '../assets/images/preview.png';
-
+// import ImageUploading from 'react-images-uploading';
 import toast, { Toaster } from 'react-hot-toast';
 import { createPost } from '../helper/diaryHelper';
 import { getRandomPrompt } from '../components/Diary';
 import FormField from '../components/Diary/FormField';
 import Loader from '../components/Loader';
+import './Uploader/uploader.css';
+import Uploader from './Uploader/Uploader';
 export default function Upload() {
   const navigate = useNavigate();
   const [temp, setTemp] = useState();
+  const [image, setImage] = useState(null);
+  const [fileName, setFileName] = useState('No selected file');
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const base64Image = reader.result;
+      setForm({ ...form, photo: base64Image });
+      // Set the base64Image to the form.photo variable or use it as needed
+    };
+
+    reader.readAsDataURL(file);
+  };
+
   const [form, setForm] = useState({
     name: '',
     prompt: '',
-    photo: '',
+    photo: null,
     date: '',
   });
 
@@ -41,6 +60,9 @@ export default function Upload() {
   //   };
   const logClick = function () {
     console.log(form.photo);
+  };
+  const removeClick = function () {
+    setForm({ ...form, photo: null });
   };
   //   const generateImage = async function () {
   //     if (form.prompt) {
@@ -73,25 +95,14 @@ export default function Upload() {
   //   };
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
 
-    reader.onload = () => {
-      const base64Image = reader.result;
-      setForm({ ...form, photo: base64Image });
-      // Set the base64Image to the form.photo variable or use it as needed
-    };
-
-    reader.readAsDataURL(file);
-  };
   const handleSubmit = async function () {
     try {
       setLoading(true);
       let CreatePostpromise = createPost(form);
       CreatePostpromise.then(function () {
         setLoading(false);
-        toast.success('Shared');
+        toast.success('Thêm thành công');
       });
     } catch (error) {
       console.log(error);
@@ -121,7 +132,7 @@ export default function Upload() {
         </p>
       </div>
 
-      <form className="mt-16 max-w-3xl">
+      <form className="mt-16 max-w-xl">
         <div className="flex flex-col gap-5">
           <FormField
             disabled={true}
@@ -144,17 +155,8 @@ export default function Upload() {
             handleChange={handleChange}
           />
         </div>
-        <div>
-          <input type="text"></input>
-          <input
-            className="visible h-[50%]"
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-          />
-        </div>
 
-        <div className="flex flex-col py-5 gap-5">
+        <div className=" flex flex-col py-5 gap-5">
           <FormField
             labelName="Ghi chú"
             type="text"
@@ -164,79 +166,125 @@ export default function Upload() {
             handleChange={handleChange}
             handleSurpriseMe={handleSurpriseMe}
           />
+        </div>
+        <div>
+          {/* <ImageUploading
+            value={form.photo}
+            onChange={onChange}
+            dataURLKey="data_url"
+          >
+            {({
+              image,
+              onImageUpload,
+              onImageRemoveAll,
+              onImageUpdate,
+              onImageRemove,
+              isDragging,
+              dragProps,
+            }) => (
+              <>
+                <div
+                  {...dragProps}
+                  onClick={onImageUpload}
+                  className="relative bg-gray-50 border border-gray-300
+            text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+            focus:border-blue-500 w-64 p-3 h-64 flex 
+            justify-center items-center hover:cursor-pointer"
+                >
+                  {!form.photo ? (
+                    <p>Nhấn hoặc kéo thả vào đây để thêm ảnh:</p>
+                  ) : null}
+
+                  {form.photo ? (
+                    <img
+                      src={form.photo}
+                      alt={form.prompt}
+                      className="w-full h-full object-contain"
+                    ></img>
+                  ) : (
+                    <img
+                      src={preview}
+                      alt="preview"
+                      className="w-9/12 h-9/12 object-contain opacity-40"
+                    ></img>
+                  )}
+                  {loading && (
+                    <div
+                      className="absolute inset-0 z-0 flex justify-center 
+                items-center 
+                bg-[rgba(0,0,0,0.5)]
+                rounded-lg"
+                    >
+                      <Loader></Loader>
+                    </div>
+                  )}
+                </div>
+
+        
+              </>
+            )}
+          </ImageUploading> */}
+        </div>
+        <form
+          className="uploadform"
+          onClick={() => document.querySelector('.input-field').click()}
+        >
           <input
-            className="bg-slate-500"
             type="file"
             accept="image/*"
+            className="input-field"
+            hidden
             onChange={handleImageUpload}
           />
-          <div
-            className="relative bg-gray-50 border border-gray-300
-          text-gray-900 text-sm rounded-lg focus:ring-blue-500 
-          focus:border-blue-500 w-64 p-3 h-64 flex 
-          justify-center items-center"
-          >
-            {form.photo ? (
-              <img
-                src={form.photo}
-                alt={form.prompt}
-                className="w-full h-full object-contain"
-              ></img>
-            ) : (
-              <img
-                src={preview}
-                alt="preview"
-                className="w-9/12 h-9/12 object-contain opacity-40"
-              ></img>
-            )}
-            {generatingImg && (
-              <div
-                className="absolute inset-0 z-0 flex justify-center 
-              items-center 
-              bg-[rgba(0,0,0,0.5)]
-              rounded-lg"
-              >
-                <Loader></Loader>
-              </div>
-            )}
-          </div>
-        </div>
 
-        <div className="mt-5 flex gap-5"></div>
-        <div className="mt-2 text-[#666e75] text-[14px]">
-          <p>
-            Once you have created the image you want, you can share it with
-            others in the community
-          </p>
           {loading ? (
-            <div
-              className="absolute inset-0 z-0 flex justify-center 
-              items-center 
-              bg-[rgba(0,0,0,0.5)]
-              rounded-lg"
-            >
-              <Loader></Loader>
-            </div>
+            <Loader></Loader>
+          ) : form.photo ? (
+            <img src={form.photo} width={150} height={150} alt={fileName} />
           ) : (
-            <button
-              type="button"
-              disabled={loading}
-              onClick={handleSubmit}
-              className="mt-3 text-white bg-[#6469ff] font-medium
-          rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-            >
-              {loading ? 'Sharing...' : 'Share with the community'}
-            </button>
+            <>
+              <MdCloudUpload color="#1475cf" size={60} />
+              <p>Browse Files to upload</p>
+            </>
           )}
-        </div>
-        <button
+        </form>
+
+        <section className="uploaded-row">
+          <AiFillFileImage color="#1475cf" />
+          <span className="upload-content">
+            {fileName} -
+            <MdDelete
+              style={{ color: 'red' }}
+              onClick={() => {
+                setFileName('No selected File');
+                setImage(null);
+              }}
+            />
+          </span>
+        </section>
+        <div className="mt-5 flex gap-5"></div>
+        {/* <button
           type="button"
-          onClick={logClick}
-          className="mt-3 text-white bg-[#6469ff] font-medium
+          onClick={removeClick}
+          className="mt-3 text-white bg-[#B70404] font-medium
           rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
         >
-          click
-        </button>
+          Xóa ảnh
+        </button> */}
+        <div className="mt-2 text-[#666e75] text-[14px]">
+          <button
+            type="button"
+            disabled={loading}
+            onClick={handleSubmit}
+            className="mt-3 text-white bg-[#5C8984] font-medium
+          rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+          >
+            {loading ? 'Đang thêm...' : 'Thêm vào nhật ký'}
+          </button>
+          <p className="mt-10">
+            Bạn có thể thêm hình ảnh vào nhật ký để thêm sinh động
+          </p>
+        </div>
       </form>
     </section>
   );

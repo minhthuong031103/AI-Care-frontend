@@ -15,7 +15,10 @@ export default function DoctorBanner() {
           Đồng hành cùng bạn giải quyết các vấn đề về sức khỏe tâm lý
         </Typography>
         <Typography fontSize="22px" fontFamily="Alegreya" lineHeight="35px">
-          Với đội ngũ bác sĩ tâm lý đến từ khắp cả nước đầy kinh nghiệm
+          Với đội ngũ bác sĩ tâm lý đến từ khắp cả nước đầy kinh nghiệm. Ai-Care
+          sẽ giúp bạn dễ dàng tìm và đặt lịch hẹn với các chuyên gia tâm lý hàng
+          đầu đem lại sự tiện ích và sự chăm sóc tâm lý cần thiết để cải thiện
+          chất lượng cuộc sống của bạn.
         </Typography>
       </Box>
       {/* <div className="flex justify-center">

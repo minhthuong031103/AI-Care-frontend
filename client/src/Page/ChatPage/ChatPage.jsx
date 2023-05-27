@@ -228,7 +228,7 @@ export const ChatPage = () => {
         name="chatbox"
         onFinish={sendMessage}
         autoComplete="off"
-        className=" z-10 fixed h-fit bottom-0 flex align-center gap-2 w-full p-3 bg-white/[0.8] shadow"
+        className=" z-10 relative h-fit bottom-0 flex align-center gap-2 w-full p-3 bg-white/[0.8] shadow"
       >
         <Form.Item name="message" className="w-full mb-1">
           {!isLoading ? (
