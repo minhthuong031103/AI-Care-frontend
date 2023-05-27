@@ -22,12 +22,12 @@ const DoctorInfor = () => {
   };
   return (
     <>
-      <Link className="blog-goBack" to="/schedule">
+      <Link className="blog-goBack mt-[100px]" to="/schedule">
         <span> &#8592;</span> <span>Quay lại</span>
       </Link>
       {doctor ? (
         <>
-          <div className="blog-wrap mt-[100px] w-full h-full">
+          <div className="blog-wrap  w-full h-full">
             <header>
               <p className="blog-date">Địa chỉ: {doctor.address}</p>
               <h1>B.S {doctor.name}</h1>

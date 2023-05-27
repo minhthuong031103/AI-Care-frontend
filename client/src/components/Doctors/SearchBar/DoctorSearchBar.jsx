@@ -7,7 +7,7 @@ const DoctorSearchBar = ({
   handleSearchKey,
   clearSearch,
 }) => (
-  <div className="searchBar-wrap w-fit-content mx-auto my-10 p-2 rounded-md">
+  <div className="searchBar-wrap  w-fit-content mx-auto my-10 p-2 rounded-md">
     <div className="mt-10 ">
       <FormField
         labelName="Tìm kiếm"

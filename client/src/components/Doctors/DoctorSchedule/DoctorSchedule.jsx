@@ -88,10 +88,10 @@ function DoctorSchedule() {
   //     navigate('/');
   //   }
   return (
-    <div className="container items-center mx-auto">
+    <div className="container mt-[100px] items-center mx-auto">
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <div className="flex justify-center items-center h-auto">
-        <div className="bg-f8e8ee sm:bg-transparent justify-items-center rounded-3xl shadow-lg sm:backdrop-filter sm:backdrop-blur-md border-4 border-opacity-30 border-gray-50 flex-shrink-0 w-full sm:w-auto py-20 px-7">
+        <div className="bg-f8e8ee  sm:bg-transparent justify-items-center rounded-3xl shadow-lg sm:backdrop-filter sm:backdrop-blur-md border-4 border-opacity-30 border-gray-50 flex-shrink-0 w-full sm:w-auto py-20 px-7">
           <div className="title flex flex-col justify-between items-center">
             <h4 className="text-3xl font-bold">Phiếu liên hệ tư vấn tâm lý</h4>
             <span className="py-4 text-xl w-2/3 text-center text-gray-500">

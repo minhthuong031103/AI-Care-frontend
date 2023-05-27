@@ -8,7 +8,7 @@ import HeroBannerImage3 from '../assets/images/banner5.jpg';
 export default function HeroBanner() {
   return (
     <>
-      <Box position="relative" p="20px">
+      <Box position="relative" p="20px" mt="100px">
         <Typography
           color="#F2BED1"
           fontWeight={700}

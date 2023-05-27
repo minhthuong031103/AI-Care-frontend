@@ -123,7 +123,7 @@ export default function Upload() {
 
   return (
     <section
-      className="max-w-7xl mx-auto
+      className="max-w-7xl mx-auto mt-[100px] 
   "
     >
       <Toaster position="top-center" reverseOrder={false}></Toaster>
