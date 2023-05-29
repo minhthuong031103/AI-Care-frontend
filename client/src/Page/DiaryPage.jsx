@@ -30,11 +30,12 @@ export default function DiaryPage() {
   const handleUpload = () => {
     navigate('/diary/upload');
   };
+  // baseURL: 'https://ai-care.onrender.com'
   const fetchPosts = async function () {
     setLoading(true);
     try {
       const response = await fetch(
-        'https://aigeneratingapp.onrender.com/api/v1/post/allofuser',
+        'https://ai-care.onrender.com/api/v1/post/allofuser',
         {
           method: 'POST',
           headers: {
