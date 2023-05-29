@@ -30,6 +30,9 @@ export default function DiaryPage() {
   const handleUpload = () => {
     navigate('/diary/upload');
   };
+  const handleGenerate = () => {
+    navigate('/diary/upload/dalle');
+  };
   // baseURL: 'https://ai-care.onrender.com'
   const fetchPosts = async function () {
     setLoading(true);
@@ -92,6 +95,14 @@ export default function DiaryPage() {
             Thêm vào nhật ký
           </p>
         </button>
+        <button type="Button" onClick={handleGenerate}>
+          <p
+            className="font-inter font-medium bg-[#27374D] text-white px-5 py-3
+            rounded-md ml-20 mt-10"
+          >
+            Tạo ảnh AI-DallE
+          </p>
+        </button>
       </div>
       <div className="mt-16">
         <FormField
@@ -102,6 +113,7 @@ export default function DiaryPage() {
           value={searchText}
           handleChange={handleSearchChange}
         />
+        ``
       </div>
 
       <div className="mt-10">

@@ -11,12 +11,14 @@ import FormField from '../components/Diary/FormField';
 import Loader from '../components/Loader';
 import './Uploader/uploader.css';
 import Uploader from './Uploader/Uploader';
-export default function Upload() {
+export default function UploadAI() {
   const _id = localStorage.getItem('_id');
   const navigate = useNavigate();
   const [temp, setTemp] = useState();
   const [image, setImage] = useState(null);
   const [fileName, setFileName] = useState('No selected file');
+  const [generatingImg, setGeneratingImg] = useState(false);
+  const [loading, setLoading] = useState(false);
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -65,37 +67,31 @@ export default function Upload() {
   const removeClick = function () {
     setForm({ ...form, photo: null });
   };
-  //   const generateImage = async function () {
-  //     if (form.prompt) {
-  //       try {
-  //         setGeneratingImg(true);
-  //         await fetch(`https://lexica.art/api/v1/search?q=${form.prompt}`, {
-  //           method: 'GET',
-  //         })
-  //           .then((response) => response.json())
-  //           .then(async (data) => {
-  //             if (data.images && data.images.length > 0) {
-  //               const randomIndex = Math.floor(
-  //                 Math.random() * data.images.length
-  //               );
-  //               const imageUrl = data.images[randomIndex].src;
-  //               const base64data = await convertToBase64(imageUrl);
-  //               setForm({ ...form, photo: base64data });
-  //             } else {
-  //               alert('No images found for the prompt');
-  //             }
-  //           });
-  //       } catch (error) {
-  //         alert(error);
-  //       } finally {
-  //         setGeneratingImg(false);
-  //       }
-  //     } else {
-  //       alert('Please enter a prompt');
-  //     }
-  //   };
-  const [generatingImg, setGeneratingImg] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const generateImage = async () => {
+    if (form.prompt) {
+      try {
+        setGeneratingImg(true);
+        const response = await fetch('https://ai-care.onrender.com/api/dalle', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            prompt: form.prompt,
+          }),
+        });
+
+        const data = await response.json();
+        setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+      } catch (err) {
+        alert(err);
+      } finally {
+        setGeneratingImg(false);
+      }
+    } else {
+      alert('Please provide proper prompt');
+    }
+  };
 
   const handleSubmit = async function () {
     try {
@@ -129,11 +125,11 @@ export default function Upload() {
       <Toaster position="top-center" reverseOrder={false}></Toaster>
       <div>
         <h1 className="font-medium text-[#222328] text-[32px]">
-          Tạo một khoảnh khắc vào nhật ký của bạn
+          Generative AI Dall-E
         </h1>
         <p className="mt-2 text-[#666e75] text-[16px] max-w[500px] ">
-          Ghi lại những khoảnh khắc, những điều cần lưu ý và sự kiện trong ngày
-          của bạn
+          Tạo một bức ảnh bằng trí tuệ nhân tạo thông qua sự sáng tạo của riêng
+          bạn
         </p>
       </div>
 
@@ -163,74 +159,18 @@ export default function Upload() {
 
         <div className=" flex flex-col py-5 gap-5">
           <FormField
-            labelName="Ghi chú"
+            labelName="Yêu cầu về bức ảnh"
             type="text"
             name="prompt"
             placeholder="Hãy viết gì đó..."
             value={form.prompt}
             handleChange={handleChange}
             handleSurpriseMe={handleSurpriseMe}
+            isSurpriseMe={true}
           />
         </div>
-        <div>
-          {/* <ImageUploading
-            value={form.photo}
-            onChange={onChange}
-            dataURLKey="data_url"
-          >
-            {({
-              image,
-              onImageUpload,
-              onImageRemoveAll,
-              onImageUpdate,
-              onImageRemove,
-              isDragging,
-              dragProps,
-            }) => (
-              <>
-                <div
-                  {...dragProps}
-                  onClick={onImageUpload}
-                  className="relative bg-gray-50 border border-gray-300
-            text-gray-900 text-sm rounded-lg focus:ring-blue-500 
-            focus:border-blue-500 w-64 p-3 h-64 flex 
-            justify-center items-center hover:cursor-pointer"
-                >
-                  {!form.photo ? (
-                    <p>Nhấn hoặc kéo thả vào đây để thêm ảnh:</p>
-                  ) : null}
 
-                  {form.photo ? (
-                    <img
-                      src={form.photo}
-                      alt={form.prompt}
-                      className="w-full h-full object-contain"
-                    ></img>
-                  ) : (
-                    <img
-                      src={preview}
-                      alt="preview"
-                      className="w-9/12 h-9/12 object-contain opacity-40"
-                    ></img>
-                  )}
-                  {loading && (
-                    <div
-                      className="absolute inset-0 z-0 flex justify-center 
-                items-center 
-                bg-[rgba(0,0,0,0.5)]
-                rounded-lg"
-                    >
-                      <Loader></Loader>
-                    </div>
-                  )}
-                </div>
-
-        
-              </>
-            )}
-          </ImageUploading> */}
-        </div>
-        <form
+        {/* <form
           className="uploadform"
           onClick={() => document.querySelector('.input-field').click()}
         >
@@ -252,21 +192,39 @@ export default function Upload() {
               <p>Browse Files to upload</p>
             </>
           )}
-        </form>
-
-        <section className="uploaded-row">
-          <AiFillFileImage color="#1475cf" />
-          <span className="upload-content">
-            {fileName} -
-            <MdDelete
-              style={{ color: 'red' }}
-              onClick={() => {
-                setFileName('No selected File');
-                setImage(null);
-              }}
+        </form> */}
+        <div className="relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center">
+          {form.photo ? (
+            <img
+              src={form.photo}
+              alt={form.prompt}
+              className="w-full h-full object-contain"
             />
-          </span>
-        </section>
+          ) : (
+            <img
+              src={preview}
+              alt="preview"
+              className="w-9/12 h-9/12 object-contain opacity-40"
+            />
+          )}
+
+          {generatingImg && (
+            <div className="absolute inset-0 z-0 flex justify-center items-center bg-white rounded-lg">
+              <Loader />
+            </div>
+          )}
+        </div>
+
+        <div className="mt-5 flex gap-5">
+          <button
+            type="button"
+            onClick={generateImage}
+            className=" text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+          >
+            {generatingImg ? 'Generating...' : 'Generate'}
+          </button>
+        </div>
+
         <div className="mt-5 flex gap-5"></div>
         {/* <button
           type="button"
