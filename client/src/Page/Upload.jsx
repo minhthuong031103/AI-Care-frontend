@@ -16,7 +16,7 @@ export default function Upload() {
   const navigate = useNavigate();
   const [temp, setTemp] = useState();
   const [image, setImage] = useState(null);
-  const [fileName, setFileName] = useState('No selected file');
+  const [fileName, setFileName] = useState('Chưa có file được chọn');
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -249,7 +249,7 @@ export default function Upload() {
           ) : (
             <>
               <MdCloudUpload color="#1475cf" size={60} />
-              <p>Browse Files to upload</p>
+              <p>Nhấn để chọn ảnh hoặc kéo thả</p>
             </>
           )}
         </form>
@@ -261,7 +261,7 @@ export default function Upload() {
             <MdDelete
               style={{ color: 'red' }}
               onClick={() => {
-                setFileName('No selected File');
+                setFileName('Chưa có file được chọn');
                 setImage(null);
               }}
             />
