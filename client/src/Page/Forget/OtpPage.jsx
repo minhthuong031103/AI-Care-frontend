@@ -86,7 +86,7 @@ function OtpPage() {
                 type="submit"
                 className="w-full text-white my-2 bg-[#060606] rounded-md px-8 py-5 text-center"
               >
-                Xác nhận đặt lịch
+                Xác nhận OTP
               </button>
             </div>
           </form>

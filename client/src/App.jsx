@@ -24,6 +24,7 @@ import ResetPage from './Page/Forget/ResetPage';
 import Blog from './Page/Blog';
 import { AuthorizedUser, LoggedUser } from './Page/authenticate';
 import { BlogDetail } from './Page/BlogDetail/BlogDetail';
+import UploadAI from './Page/UploadAI';
 function App() {
   const [count, setCount] = useState(0);
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/details/:id" element={<BlogDetail></BlogDetail>} />
           <Route path="/exercise" element={<HomeExcercise></HomeExcercise>} />
           <Route path="/exercise/:id" element={<ExerciseDetail />} />
+
           <Route
             path="/login"
             element={
@@ -76,6 +78,14 @@ function App() {
             element={
               <AuthorizedUser>
                 <Upload />
+              </AuthorizedUser>
+            }
+          />
+          <Route
+            path="/diary/upload/dalle"
+            element={
+              <AuthorizedUser>
+                <UploadAI />
               </AuthorizedUser>
             }
           />

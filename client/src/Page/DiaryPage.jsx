@@ -30,11 +30,15 @@ export default function DiaryPage() {
   const handleUpload = () => {
     navigate('/diary/upload');
   };
+  const handleGenerate = () => {
+    navigate('/diary/upload/dalle');
+  };
+  // baseURL: 'https://ai-care.onrender.com'
   const fetchPosts = async function () {
     setLoading(true);
     try {
       const response = await fetch(
-        'https://aigeneratingapp.onrender.com/api/v1/post/allofuser',
+        'https://ai-care.onrender.com/api/v1/post/allofuser',
         {
           method: 'POST',
           headers: {
@@ -85,13 +89,22 @@ export default function DiaryPage() {
 
         <button type="Button" onClick={handleUpload}>
           <p
-            className="font-inter font-medium bg-[#27374D] text-white px-5 py-3
-            rounded-md mt-10"
+            className="font-inter font-medium bg-[#9BABB8] text-white px-5 py-3
+            rounded-md ml-10 mt-10"
           >
             Thêm vào nhật ký
           </p>
         </button>
+        <button type="Button" onClick={handleGenerate}>
+          <p
+            className="font-inter font-medium bg-[#D7C0AE] text-white px-5 py-3
+            rounded-md ml-10 sm:ml-20 mt-10"
+          >
+            Tạo ảnh AI-DallE
+          </p>
+        </button>
       </div>
+
       <div className="mt-16">
         <FormField
           labelName="Tìm kiếm"
