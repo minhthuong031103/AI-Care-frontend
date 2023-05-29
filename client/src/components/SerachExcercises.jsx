@@ -7,7 +7,7 @@ import HorizontalScrollbar from './HorizontalScrollbar';
 
 const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
   const [search, setSearch] = useState('');
-
+  const [searchTimeout, setSearchTimeout] = useState(null);
   const [bodyParts, setBodyParts] = useState([]);
 
   useEffect(() => {
@@ -30,19 +30,38 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
         exerciseOptions
       );
 
-      const searchedExercises = exercisesData.filter(
-        (item) =>
-          item.name.toLowerCase().includes(search) ||
-          item.target.toLowerCase().includes(search) ||
-          item.equipment.toLowerCase().includes(search) ||
-          item.bodyPart.toLowerCase().includes(search)
+      setSearchTimeout(
+        setTimeout(() => {
+          // const searchResult = allPosts.filter(
+          //   (item) =>
+          //     item.name.toLowerCase().includes(searchText.toLowerCase()) ||
+          //     item.prompt.toLowerCase().includes(searchText.toLowerCase())
+
+          // );
+          const searchedExercises = exercisesData.filter(
+            (item) =>
+              item.name.toLowerCase().includes(search) ||
+              item.target.toLowerCase().includes(search) ||
+              item.equipment.toLowerCase().includes(search) ||
+              item.bodyPart.toLowerCase().includes(search)
+          );
+          if (searchedExercises) setExercises(searchedExercises);
+          else {
+            setExercises(null);
+          }
+          window.scrollTo({ top: 1800, left: 100, behavior: 'smooth' });
+          setSearch('');
+        }, 500)
       );
-
-      window.scrollTo({ top: 1800, left: 100, behavior: 'smooth' });
-
-      setSearch('');
-      setExercises(searchedExercises);
     }
+
+    // const searchedExercises = exercisesData.filter(
+    //   (item) =>
+    //     item.name.toLowerCase().includes(search) ||
+    //     item.target.toLowerCase().includes(search) ||
+    //     item.equipment.toLowerCase().includes(search) ||
+    //     item.bodyPart.toLowerCase().includes(search)
+    // );
   };
   return (
     <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
@@ -69,15 +88,12 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
           type="text"
         />
         <Button type="Button" onClick={handleSearch}>
-          <p
-            className="font-inter font-medium bg-blue-500 text-white px-4 py-2 rounded-md ml-4"
-          >
+          <p className="font-inter font-medium bg-blue-500 text-white px-4 py-2 rounded-md ml-4">
             Tìm kiếm
           </p>
         </Button>
       </Box>
     </Stack>
-
   );
 };
 

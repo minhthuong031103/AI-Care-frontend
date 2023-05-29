@@ -8,12 +8,12 @@
   font-family: 'sans', sans-serif;
 }
 
-@media screen and (min-width: 480px) {
+/* @media screen and (min-width: 480px) {
   .card:nth-child(7n + 1) {
     grid-column: auto/span 2;
     grid-row: auto/span 2;
   }
-}
+} */
 
 .prompt::-webkit-scrollbar {
   width: 5px;
