@@ -90,7 +90,7 @@ export default function DiaryPage() {
         <button type="Button" onClick={handleUpload}>
           <p
             className="font-inter font-medium bg-[#9BABB8] text-white px-5 py-3
-            rounded-md mt-10"
+            rounded-md ml-10 mt-10"
           >
             Thêm vào nhật ký
           </p>
@@ -98,12 +98,13 @@ export default function DiaryPage() {
         <button type="Button" onClick={handleGenerate}>
           <p
             className="font-inter font-medium bg-[#D7C0AE] text-white px-5 py-3
-            rounded-md ml-20 mt-10"
+            rounded-md ml-10 sm:ml-20 mt-10"
           >
             Tạo ảnh AI-DallE
           </p>
         </button>
       </div>
+
       <div className="mt-16">
         <FormField
           labelName="Tìm kiếm"
