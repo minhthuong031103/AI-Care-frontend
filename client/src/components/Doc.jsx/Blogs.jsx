@@ -35,7 +35,7 @@ export const Blogs = () => {
                   <AiOutlineComment className="icon" />{' '}
                   <label htmlFor="">27</label>
                   <AiOutlineShareAlt className="icon" />{' '}
-                  <label htmlFor="">SHARE</label>
+                  <label htmlFor="">Chia sẻ</label>
                 </div>
               </div>
             </div>

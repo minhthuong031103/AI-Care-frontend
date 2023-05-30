@@ -139,7 +139,7 @@ function DoctorSchedule() {
 
               <button
                 type="submit"
-                className="w-full sm:w-30 text-white my-2 bg-[#060606] rounded-md px-8 py-5 text-center flex items-center justify-center"
+                className="w-full sm:w-30 text-white my-2 bg-blue-500 rounded-md px-8 py-5 text-center flex items-center justify-center"
               >
                 Xác nhận đặt lịch
               </button>

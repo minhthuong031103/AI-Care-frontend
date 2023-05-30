@@ -29,7 +29,7 @@ const DoctorInfor = () => {
         <>
           <div className="blog-wrap  w-full h-full">
             <header>
-              <p className="blog-date">Địa chỉ: {doctor.address}</p>
+              <p className="blog-date text-gray-700">Địa chỉ: {doctor.address}</p>
               <h1>B.S {doctor.name}</h1>
               <div className="blog-subCategory">
                 {doctor.certificate.map((certificate, i) => (
@@ -45,7 +45,7 @@ const DoctorInfor = () => {
               <button
                 type="button"
                 onClick={Schedule}
-                className="w-50 text-white my-2 bg-[#060606] 
+                className="w-50 text-white my-2 bg-[#3b82f6] 
           rounded-md px-8 py-5 text-center
            flex items-center justify-center"
               >

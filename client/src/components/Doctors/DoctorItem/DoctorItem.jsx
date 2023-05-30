@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {GrLinkNext} from 'react-icons/gr'
 
 import './styles.css';
 
@@ -11,8 +12,8 @@ const DoctorItem = ({
       {' '}
       <div className="blogItem-wrap">
         <img className="blogItem-cover" src={avatar} alt="cover" />
-        <p className="chip">{city}</p>
-        <h3>{name}</h3>
+        <p className="">{city}</p>
+        <h3 className='text-xl'>{name}</h3>
         <p className="blogItem-desc">{description}</p>
 
         <div className="flex items-end mt-10 justify-end">
@@ -21,8 +22,8 @@ const DoctorItem = ({
               className="font-inter font-medium bg-blue-500 text-white px-4 py-2
           rounded-md "
             > 
-              <p className>
-                ➝
+              <p>
+                <GrLinkNext size={25} />
               </p>
             </p>
           </button>

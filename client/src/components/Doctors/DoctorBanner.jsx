@@ -6,7 +6,7 @@ export default function DoctorBanner() {
     <>
       <Box position="relative" mt="100px" p="20px">
         <Typography
-          color="#569DAA"
+          color="#3b82f6"
           fontWeight={700}
           sx={{ fontSize: { lg: '44px', xs: '40px' } }}
           mb="23px"

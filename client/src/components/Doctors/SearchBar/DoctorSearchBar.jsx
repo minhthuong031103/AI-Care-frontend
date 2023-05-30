@@ -33,7 +33,7 @@ const DoctorSearchBar = ({
       )}
       <button
         type="submit"
-        className="px-4 py-2 sm:px-8 sm:py-2 bg-[#0f52ba] text-white rounded-md"
+        className="px-4 py-2 sm:px-8 sm:py-2 bg-[#3b82f6] text-white rounded-md"
       >
         Tìm kiếm
       </button>

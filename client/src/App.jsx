@@ -25,6 +25,7 @@ import Blog from './Page/Blog';
 import { AuthorizedUser, LoggedUser } from './Page/authenticate';
 import { BlogDetail } from './Page/BlogDetail/BlogDetail';
 import UploadAI from './Page/UploadAI';
+
 function App() {
   const [count, setCount] = useState(0);
 
