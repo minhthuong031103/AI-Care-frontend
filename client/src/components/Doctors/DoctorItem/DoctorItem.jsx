@@ -12,10 +12,11 @@ const DoctorItem = ({
       {' '}
       <div className="blogItem-wrap">
         <img className="blogItem-cover" src={avatar} alt="cover" />
-        <p className="">{city}</p>
-        <h3 className='text-xl'>{name}</h3>
+        <button className=" px-4 py-2 disabled w-fit h-fit sm:px-8 sm:py-2 bg-[#B0DAFF] text-white rounded-md">
+          {city}
+        </button>{' '}
+        <h3>B.S {name}</h3>
         <p className="blogItem-desc">{description}</p>
-
         <div className="flex items-end mt-10 justify-end">
           <button type="Button">
             <p
