@@ -83,7 +83,7 @@ export default function Register() {
               toast.success('Đăng ký thành công!');
               setTimeout(() => {
                 navigate('/login');
-              }, 1500);
+              }, 1000);
             }
           })
           .catch(function (error) {

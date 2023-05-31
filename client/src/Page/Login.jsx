@@ -32,24 +32,31 @@ export default function Login() {
           toast.error('Vui lòng nhập mật khẩu');
           return 0;
         }
+        const toastId = toast.loading('Đang xử lý...');
         let loginPromise = verifyLogin({
           email: values.email,
           password: values.password,
         });
-        await toast.promise(loginPromise, {
-          loading: 'Loading...',
-          success: 'Đăng nhập thành công!',
-          error: 'Email hoặc mật khẩu không chính xác, vui lòng thử lại!',
-        });
 
-        loginPromise.then(function (res) {
-          let { token, _id, username } = res.data;
-
-          localStorage.setItem('token', token);
-          localStorage.setItem('_id', _id);
-          localStorage.setItem('username', username);
-          navigate('/');
-        });
+        loginPromise
+          .then(function (res) {
+            toast.dismiss(toastId);
+            let { token, _id, username } = res.data;
+            toast.success('Đăng nhập thành công!');
+            localStorage.setItem('token', token);
+            localStorage.setItem('_id', _id);
+            localStorage.setItem('username', username);
+            setTimeout(() => {
+              navigate('/');
+            }, 500);
+          })
+          .catch(function (error) {
+            toast.dismiss(toastId);
+            console.log(error);
+            toast.error(
+              'Email hoặc mật khẩu không chính xác, vui lòng thử lại!'
+            );
+          });
         // var exist = 0;
         // let createPromise = registerUser(values);
         // await createPromise.then(function (res) {
