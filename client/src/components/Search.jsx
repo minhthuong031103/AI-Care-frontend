@@ -51,7 +51,7 @@ export default function Search({ value, handleSearchKey, setSearchKey }) {
           value={value}
           type="text"
           placeholder="Tìm kiếm"
-          className="outline-none ml-2 w-full h-[20px]"
+          className="outline-none   ml-2 w-full h-[20px]"
         />
         <BsSearchHeartFill className="text-[30px] text-blue-500" />
       </div>

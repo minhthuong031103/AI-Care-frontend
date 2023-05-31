@@ -1,12 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const labelsClasses = [
-  "pink",
-  "yellow",
-  "blue",
-  "red",
-  "purple",
-  "gray",
-];
+const labelsClasses = ['pink', 'yellow', 'blue', 'red', 'purple', 'gray'];
 
 export default {
   purge: {
@@ -16,7 +9,7 @@ export default {
     safelist: [
       ...labelsClasses.map((lbl) => `bg-${lbl}-500`),
       ...labelsClasses.map((lbl) => `bg-${lbl}-200`),
-      ...labelsClasses.map((lbl) => `text-${lbl}-400`)
+      ...labelsClasses.map((lbl) => `text-${lbl}-400`),
     ],
   },
   theme: {
@@ -33,9 +26,8 @@ export default {
           '0 0 1px 0 rgba(189,192,207,0.06),0 10px 16px -1px rgba(189,192,207,0.4)',
       },
       gridTemplateColumns: {
-        "1/5": "1fr 5fr"
-      }
+        '1/5': '1fr 5fr',
+      },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
 };
