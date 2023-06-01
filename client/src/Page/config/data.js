@@ -15,7 +15,7 @@ const loadDoctorData = async () => {
   );
   return doctorDescription;
 };
-const description = await loadDoctorData();
+const description = loadDoctorData();
 
 export const doctorList = [
   {
