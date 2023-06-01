@@ -8,15 +8,14 @@ const fetchMarkdownContent = async (url) => {
     return null;
   }
 };
-
+var description;
 const loadDoctorData = async () => {
   const doctorDescription = await fetchMarkdownContent(
     '/src/Page/config/doctor1.md'
   );
-  return doctorDescription;
+  description = doctorDescription;
 };
-const description = loadDoctorData();
-
+loadDoctorData();
 export const doctorList = [
   {
     id: '646b6e82986019f5ee6bdecd',
