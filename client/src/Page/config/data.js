@@ -10,10 +10,7 @@ const fetchMarkdownContent = async (url) => {
 };
 var description;
 const loadDoctorData = async () => {
-  const doctorDescription = await fetchMarkdownContent(
-    '/src/Page/config/doctor1.md'
-  );
-  description = doctorDescription;
+  description = await fetchMarkdownContent('/src/Page/config/doctor1.md');
 };
 await loadDoctorData();
 export const doctorList = [
