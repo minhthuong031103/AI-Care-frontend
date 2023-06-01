@@ -49,24 +49,25 @@ const DoctorInfor = () => {
               </div>
             </header>
             <img src={doctor.avatar} alt="cover" />
-
+          </div>
+          <div className="ml-[10%] max-w-[1300px] flex justify-center items-center">
             {doctor.descriptionVip ? (
               <Markdown>{doctor.descriptionVip}</Markdown>
             ) : (
               <p className="blog-desc">{doctor.description}</p>
             )}
+          </div>
 
-            <div className="flex justify-center items-center">
-              <button
-                type="button"
-                onClick={Schedule}
-                className="w-50 text-white my-2 bg-[#3b82f6] 
+          <div className="flex justify-center items-center">
+            <button
+              type="button"
+              onClick={Schedule}
+              className="w-50 text-white my-2 bg-[#3b82f6] 
           rounded-md px-8 py-5 text-center
            flex items-center justify-center"
-              >
-                Liên hệ tư vấn ngay
-              </button>
-            </div>
+            >
+              Liên hệ tư vấn ngay
+            </button>
           </div>
           <Footer></Footer>
         </>
