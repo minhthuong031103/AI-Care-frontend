@@ -12,7 +12,8 @@ var description;
 const loadDoctorData = async () => {
   description = await fetchMarkdownContent('/src/Page/config/doctor1.md');
 };
-await loadDoctorData();
+const load = await loadDoctorData();
+
 export const doctorList = [
   {
     id: '646b6e82986019f5ee6bdecd',
