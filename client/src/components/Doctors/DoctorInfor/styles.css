@@ -1,8 +1,8 @@
 .chip {
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   background: black;
   font: white;
-  padding: 0.3rem 0.5rem;
+  padding: 0.5rem 0.7rem;
   border-radius: 5px;
   width: fit-content;
   text-transform: capitalize;

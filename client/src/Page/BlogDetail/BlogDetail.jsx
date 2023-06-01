@@ -28,8 +28,10 @@ export const BlogDetail = () => {
             </div>
 
             <div className="mt-8">
-              <h1 className="text-4xl font-bold mb-4">{blogs.title}</h1>
-              <p className="text-lg mb-4">{blogs.desc}</p>
+              <h2 className="text-4xl font-bold mb-4 ">{blogs.title}</h2>
+              <p className="text-lg mb-4" style={{ textTransform: 'none' }}>
+                {blogs.desc}
+              </p>
               <p className="text-gray-500">{blogs.date}</p>
             </div>
           </div>

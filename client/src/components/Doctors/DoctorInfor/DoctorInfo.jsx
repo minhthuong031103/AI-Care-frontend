@@ -5,7 +5,7 @@ import './styles.css';
 import { Link } from 'react-router-dom';
 import { doctorList } from '../../../Page/config/data';
 import Footer from '../../Footerr';
-
+import Markdown from 'markdown-to-jsx';
 const DoctorInfor = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -29,8 +29,17 @@ const DoctorInfor = () => {
         <>
           <div className="blog-wrap  w-full h-full">
             <header>
-              <p className="blog-date text-gray-700">Địa chỉ: {doctor.address}</p>
+              <p className="blog-date text-gray-700">
+                Địa chỉ: {doctor.address}
+              </p>
               <h1>B.S {doctor.name}</h1>
+              {doctor.vip ? (
+                <button className=" px-3 py-2 disabled w-fit h-fit sm:px-8 sm:py-2 bg-[#FFC26F] text-white rounded-md">
+                  Được đề nghị
+                </button>
+              ) : (
+                <></>
+              )}
               <div className="blog-subCategory">
                 {doctor.certificate.map((certificate, i) => (
                   <div key={i}>
@@ -40,7 +49,13 @@ const DoctorInfor = () => {
               </div>
             </header>
             <img src={doctor.avatar} alt="cover" />
-            <p className="blog-desc">{doctor.description}</p>
+
+            {doctor.descriptionVip ? (
+              <Markdown>{doctor.descriptionVip}</Markdown>
+            ) : (
+              <p className="blog-desc">{doctor.description}</p>
+            )}
+
             <div className="flex justify-center items-center">
               <button
                 type="button"

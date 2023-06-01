@@ -1,16 +1,36 @@
+const fetchMarkdownContent = async (url) => {
+  try {
+    const response = await fetch(url);
+    const markdownContent = await response.text();
+    return markdownContent;
+  } catch (error) {
+    console.error('Error fetching Markdown content:', error);
+    return null;
+  }
+};
+
+const loadDoctorData = async () => {
+  const doctorDescription = await fetchMarkdownContent(
+    '/src/Page/config/doctor1.md'
+  );
+  return doctorDescription;
+};
+const description = await loadDoctorData();
+
 export const doctorList = [
   {
     id: '646b6e82986019f5ee6bdecd',
-    name: 'Đinh Minh Thiện ',
+    name: 'Lê Mạnh Chính',
     city: 'Quảng Trị',
     certificate: ['Cử nhân Luật', 'Thạc sĩ tâm lý học'],
     description:
-      'Thiện là một bác sĩ tâm lý chuyên nghiệp, luôn đồng hành và tận tâm giúp đỡ những người đang trải qua khó khăn tâm lý. Với tư duy nhạy bén và kiến thức sâu sắc về tâm lý con người, Thiện tạo ra môi trường an toàn và ấm cúng để khám phá, chẩn đoán và điều trị các vấn đề tâm lý.   ',
-
+      'Chính là một bác sĩ tâm lý chuyên nghiệp, luôn đồng hành và tận tâm giúp đỡ những người đang trải qua khó khăn tâm lý. Với tư duy nhạy bén và kiến thức sâu sắc về tâm lý con người, Thiện tạo ra môi trường an toàn và ấm cúng để khám phá, chẩn đoán và điều trị các vấn đề tâm lý.  ',
+    descriptionVip: description,
     address: ' 245 Hùng Vương, Thành phố Đông Hà, Tỉnh Quảng Trị',
     avatar:
       'https://img.freepik.com/free-photo/smiling-asian-male-doctor-pointing-upwards_1262-18321.jpg?w=1060&t=st=1684913364~exp=1684913964~hmac=298cd2951b29c56f8250e533438223820f806a8d9e49c2ce3f610490bdc96625',
     email: 'nominh67@gmail.com',
+    vip: 'true',
   },
   {
     id: '646b8a62f3212c11a6e1e1f9',

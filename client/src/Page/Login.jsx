@@ -85,7 +85,7 @@ export default function Login() {
 
       <div className="w-full bg-[#f5f5f5f5] h-screen flex items-start">
         <div className="relative w-1/2 h-full flex flex-col hidden sm:block ">
-          <div className="absolute top-[20%] left-[10%] flex flex-col">
+          <div className="absolute top-[15%] left-[10%] flex flex-col">
             <h1 className="text-4xl text-white font-normal">
               Bạn gặp vấn đề về tâm lý?
             </h1>

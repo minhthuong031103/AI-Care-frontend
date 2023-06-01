@@ -118,7 +118,7 @@ const Navbar = () => {
                     </h1>
                   </Link>
                 </div>
-                <div className="hidden md:block">
+                <div className="hidden lg:block">
                   <div className="ml-10 flex items-baseline space-x-4">
                     <Link
                       onClick={() => setActivePage('')}
@@ -226,7 +226,7 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
-              <div className="mr-10 flex md:hidden ">
+              <div className="mr-10 flex lg:hidden ">
                 <button
                   onClick={() => setIsOpen(!isOpen)}
                   type="button"
@@ -283,7 +283,7 @@ const Navbar = () => {
             leaveTo="opacity-0 scale-95"
           >
             {(ref) => (
-              <div className="md:hidden" id="mobile-menu ">
+              <div className="lg:hidden" id="mobile-menu ">
                 <div
                   ref={ref}
                   className="bg-white px-2 pt-0 pb-3 space-y-1 sm:px-3 z-50 bg-white/[0.2] shadow "
