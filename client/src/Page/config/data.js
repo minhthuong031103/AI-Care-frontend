@@ -15,7 +15,7 @@ const loadDoctorData = async () => {
   );
   description = doctorDescription;
 };
-loadDoctorData();
+await loadDoctorData();
 export const doctorList = [
   {
     id: '646b6e82986019f5ee6bdecd',
