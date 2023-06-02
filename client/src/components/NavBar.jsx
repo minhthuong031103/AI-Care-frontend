@@ -144,7 +144,7 @@ const Navbar = () => {
                         activePage === 'chat' ? '' : ''
                       }`}
                     >
-                      AI-Care chat
+                      Emotibot
                     </Link>
                     <Link
                       onClick={() => setActivePage('exercise')}
@@ -306,7 +306,7 @@ const Navbar = () => {
                     duration={500}
                     className="cursor-pointer hover:bg-blue-500 text-black hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                   >
-                    AI-Care chat
+                    Emotibot
                   </Link>
 
                   <Link

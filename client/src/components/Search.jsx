@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { BsSearchHeartFill } from 'react-icons/bs';
 
-export default function Search({ value, handleSearchKey, setSearchKey }) {
+export default function Search({ value, setSearchKey }) {
   const tags = [
+    {
+      id: 0,
+      name: 'Tất cả',
+    },
     {
       id: 1,
       name: 'Tâm lý học',
@@ -39,7 +43,7 @@ export default function Search({ value, handleSearchKey, setSearchKey }) {
           {/* <h1 className='px-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold'> <span className='text-orange-500'>UIT</span> offers functions that support students in their academic journey, including guidance, counseling, and psychological support</h1> */}
         </div>
         <img
-          className="w-full max-h-[700px] object-cover"
+          className="w-full max-h-[500px] object-cover"
           src="/images/backgroundWeb.png"
           alt="/"
         />
@@ -47,7 +51,7 @@ export default function Search({ value, handleSearchKey, setSearchKey }) {
 
       <div className="bg-white w-full sm:w-[610px] shadow-lg p-1 rounded-lg mt-[-117px] mx-[20%] sm:mx-auto flex items-center z-10">
         <input
-          onChange={handleSearchKey}
+          // onChange={handleSearchKey}
           value={value}
           type="text"
           placeholder="Tìm kiếm"
@@ -62,7 +66,8 @@ export default function Search({ value, handleSearchKey, setSearchKey }) {
             key={item.id}
             onClick={() => {
               setActiveIndex(index);
-              handleSearchKey(tags[index].name); // Pass the selected tag name to the handleSearchKey function
+              if (tags[index].name === 'Tất cả') setSearchKey('');
+              else setSearchKey(tags[index].name); // Pass the selected tag name to the handleSearchKey function
             }}
             className={`p-1 pb-2 rounded-sm md:rounded-full cursor-pointer md:px-4 hover:scale-110 hover:border-[1px] transition-all duration-100 ease-in-out
         ${index === activeIndex ? 'bg-blue-500 text-white' : null}`}

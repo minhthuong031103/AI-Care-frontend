@@ -71,7 +71,7 @@ export default function UploadAI() {
     if (form.prompt) {
       try {
         setGeneratingImg(true);
-        const response = await fetch('https://ai-care.onrender.com/api/dalle', {
+        const response = await fetch('http://localhost:8080/api/dalle', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

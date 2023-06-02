@@ -26,13 +26,7 @@ export default function Blog() {
   return (
     <div>
       <Category />
-      <Search
-        setSearchKey={setSearchKey}
-        value={searchKey}
-        handleSearchKey={(e) => {
-          setSearchKey(e.target.value);
-        }}
-      />
+      <Search setSearchKey={setSearchKey} value={searchKey} />
 
       <Blogs blog={blogs} />
       <Footerr />
