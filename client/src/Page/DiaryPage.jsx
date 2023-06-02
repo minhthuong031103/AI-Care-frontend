@@ -39,7 +39,7 @@ export default function DiaryPage() {
     setLoading(true);
     try {
       const response = await fetch(
-        'http://localhost:8080/api/v1/post/allofuser',
+        'https://ai-care.onrender.com/api/v1/post/allofuser',
         {
           method: 'POST',
           headers: {

@@ -4,7 +4,7 @@ import axios from 'axios';
 // axios.defaults.baseURL = 'https://aigeneratingapp.onrender.com';
 // axios.defaults.baseURL = 'https://ai-care.onrender.com/';
 const instance = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: 'https://ai-care.onrender.com',
   // Additional configuration options
 });
 

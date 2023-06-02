@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance1 = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: 'https://ai-care.onrender.com',
   // Additional configuration options
 });
 // axios.defaults.baseURL = 'http://localhost:8080';
