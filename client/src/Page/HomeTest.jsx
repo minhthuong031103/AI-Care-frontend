@@ -6,24 +6,11 @@ import Footerr from '../components/Footerr';
 
 export default function HomeTest() {
   useEffect(() => {
-    const cookieValue = document.cookie.replace(
-      /(?:(?:^|.*;\s*)responseData\s*\=\s*([^;]*).*$)|^.*$/,
-      '$1'
-    );
+    const urlParams = new URLSearchParams(window.location.search);
+    const responseData = urlParams.get('responseData');
 
-    if (cookieValue) {
-      const responseData = JSON.parse(decodeURIComponent(cookieValue));
-      localStorage.setItem('username', responseData.name);
-      localStorage.setItem('_id', responseData._id);
-      localStorage.setItem('token', responseData.token);
-
-      // Clear the cookie after processing it
-      document.cookie =
-        'responseData=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-
-      // Reload the page after storing the data
-      window.location.reload();
-    }
+    // Use the responseData as needed
+    console.log(responseData);
   }, []);
   return (
     <div className="flex flex-col items-center">
