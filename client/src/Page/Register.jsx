@@ -5,26 +5,24 @@ import toast, { Toaster } from 'react-hot-toast';
 import { registerUser } from '../helper/loginHelper';
 import { useEffect, useState } from 'react';
 export default function Register() {
-  const [responseData, setResponseData] = useState({
-    name: '',
-    email: '',
-  });
   useEffect(function () {
-    const cookieValue = document.cookie.replace(
-      /(?:(?:^|.*;\s*)responseData\s*\=\s*([^;]*).*$)|^.*$/,
-      '$1'
-    );
-    const responseData = cookieValue
-      ? JSON.parse(decodeURIComponent(cookieValue))
-      : null;
-    setResponseData({ ...responseData });
-    console.log(responseData);
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams) {
+      const responseDataString = urlParams.get('responseData');
+      const responseDataObject = JSON.parse(responseDataString);
+      // Use the responseData as needed
+      sessionStorage.setItem('email', responseDataObject.email);
+
+      sessionStorage.setItem('name', responseDataObject.name);
+
+      navigate('/register');
+    }
   }, []);
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      name: responseData.name,
-      email: responseData.email,
+      name:  sessionStorage.getItem('name')
+      email: sessionStorage.getItem('email')
       password: '',
       phone: '',
       confirmPassword: '',
