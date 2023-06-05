@@ -3,14 +3,21 @@ import Banner from '../components/Banner';
 import Benefit from '../components/Benefit';
 import Intro from '../components/Intro';
 import Footerr from '../components/Footerr';
+import { useNavigate } from 'react-router-dom';
 
 export default function HomeTest() {
+  const navigate = useNavigate();
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const responseData = urlParams.get('responseData');
+    if (urlParams) {
+      const responseData = urlParams.get('responseData');
 
-    // Use the responseData as needed
-    console.log(responseData);
+      // Use the responseData as needed
+      localStorage.setItem('token', responseData.token);
+      localStorage.setItem('_id', responseData._id);
+      localStorage.setItem('username', responseData.name);
+      navigate('/');
+    }
   }, []);
   return (
     <div className="flex flex-col items-center">
