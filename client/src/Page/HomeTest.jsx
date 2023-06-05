@@ -10,12 +10,12 @@ export default function HomeTest() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams) {
-      const responseData = urlParams.get('responseData');
-
+      const responseDataString = urlParams.get('responseData');
+      const responseDataObject = JSON.parse(responseDataString);
       // Use the responseData as needed
-      localStorage.setItem('token', responseData.token);
-      localStorage.setItem('_id', responseData._id);
-      localStorage.setItem('username', responseData.name);
+      localStorage.setItem('token', responseDataObject.token);
+      localStorage.setItem('_id', responseDataObject._id);
+      localStorage.setItem('username', responseDataObject.name);
       navigate('/');
     }
   }, []);
