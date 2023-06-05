@@ -101,23 +101,7 @@ export const ChatPage = () => {
       //import.meta.env.VITE_firstPrompt
       MessagePromise.then(function (res) {
         setFirstChat(false);
-        // const originalString = import.meta.env.VITE_firstPrompt;
 
-        // const words = username.split(' ');
-        // const _username = words.length > 1 ? words[words.length - 1] : words[0]; //ten
-
-        // // Split the originalString at the word "Thường"
-        // const replacedString = originalString.replace(/test123456/g, _username);
-
-        // // Concatenate the parts with the name in the middle
-
-        // const conversation = res.data;
-        // console.log('chay trong then');
-        // const temp = [...conversation];
-        // temp[1] = {
-        //   role: 'user',
-        //   content: conversation[1].content.split(replacedString),
-        // };
         console.log(res);
         const extracted = res.data.slice();
 
