@@ -6,7 +6,7 @@ import { registerUser } from '../helper/loginHelper';
 import { useEffect, useState } from 'react';
 export default function Register() {
   useEffect(function () {
-    console.log(1)
+    console.log(1);
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams) {
       const responseDataString = urlParams.get('responseData');
@@ -22,8 +22,8 @@ export default function Register() {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      name:  sessionStorage.getItem('name')
-      email: sessionStorage.getItem('email')
+      name: sessionStorage.getItem('name'),
+      email: sessionStorage.getItem('email'),
       password: '',
       phone: '',
       confirmPassword: '',
