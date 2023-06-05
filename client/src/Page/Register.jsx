@@ -3,17 +3,33 @@ import bgregister from '../assets/images/bgregister.jpg';
 import { useFormik } from 'formik';
 import toast, { Toaster } from 'react-hot-toast';
 import { registerUser } from '../helper/loginHelper';
+import { useEffect, useState } from 'react';
 export default function Register() {
+  const [responseData, setResponseData] = useState({
+    name: '',
+    email: '',
+  });
+  useEffect(function () {
+    const cookieValue = document.cookie.replace(
+      /(?:(?:^|.*;\s*)responseData\s*\=\s*([^;]*).*$)|^.*$/,
+      '$1'
+    );
+    const responseData = cookieValue
+      ? JSON.parse(decodeURIComponent(cookieValue))
+      : null;
+    setResponseData({ ...responseData });
+    console.log(responseData);
+  }, []);
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
+      name: responseData.name,
+      email: responseData.email,
       password: '',
       phone: '',
       confirmPassword: '',
     },
-
+    enableReinitialize: true,
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async function (values) {

@@ -1,10 +1,17 @@
 import { Link, useNavigate } from 'react-router-dom';
 import bg from '../assets/images/bg.jpg';
+import google from '../assets/images/google.jpg';
 import { useFormik } from 'formik';
 import toast, { Toaster } from 'react-hot-toast';
 import { verifyLogin } from '../helper/loginHelper';
+import { useEffect } from 'react';
 export default function Login() {
   const navigate = useNavigate();
+  const googleOnclick = async function () {
+    const url = 'http://localhost:8080/google';
+    window.location.href = url;
+  };
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -93,10 +100,7 @@ export default function Login() {
               Hãy tìm đến chúng tôi
             </p>
           </div>
-          <img
-            src="https://images.unsplash.com/photo-1577579389481-aad9b0e251c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=429&q=80"
-            className="w-full h-full object-cover"
-          ></img>
+          <img src={bg} className="w-full h-full object-cover"></img>
         </div>{' '}
         <div className="w-full sm:w-1/2 h-full flex flex-col p-20 justify-between">
           <h1 className="text-xl text-[#060606] font-semibold">AI-Care</h1>
@@ -151,6 +155,25 @@ export default function Login() {
                 Đăng ký
               </button>
             </Link>
+          </div>
+          <div className="w-full flex items-center justify-center relative">
+            <div className="w-full h-[1px] bg-black"> </div>
+            <p className="text-lg absolute text-black/80 bg-[#f5f5f5]">Hoặc</p>
+          </div>
+
+          <div className="w-full flex flex-col my-4">
+            <button
+              type="button"
+              onClick={googleOnclick}
+              className="w-full text-[#060606] my-2 bg-white border-2 border-black 
+          rounded-md p-4 text-center
+           flex items-center justify-center"
+            >
+              <div className="flex items-center flex-row justify-center">
+                <img src={google} className="h-[30px] w-[30px] mr-[10px] " />
+                <p> Đăng nhập với Google</p>
+              </div>
+            </button>
           </div>
         </div>
       </div>

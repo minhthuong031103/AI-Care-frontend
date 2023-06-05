@@ -17,9 +17,8 @@ export const ChatPage = () => {
   const [input, setInput] = useState('');
   const [response, setResponse] = useState([]);
   const [conversation, setConversation] = useState([]);
-  const [conversationTemp, setConversationTemp] = useState([]);
+
   const [isLoading, setLoading] = useState(false);
-  const [firstChat, setFirstChat] = useState(true);
 
   const formik = useFormik({
     initialValues: {
