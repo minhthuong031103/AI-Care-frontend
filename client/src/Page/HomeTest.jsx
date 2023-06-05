@@ -16,6 +16,7 @@ export default function HomeTest() {
       localStorage.setItem('token', responseDataObject.token);
       localStorage.setItem('_id', responseDataObject._id);
       localStorage.setItem('username', responseDataObject.name);
+      console.log(responseDataObject);
       navigate('/');
     }
   }, []);
