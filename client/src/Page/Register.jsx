@@ -12,11 +12,13 @@ export default function Register() {
       const responseDataString = urlParams.get('responseData');
       const responseDataObject = JSON.parse(responseDataString);
       // Use the responseData as needed
-      sessionStorage.setItem('email', responseDataObject.email);
+      if (responseDataObject) {
+        sessionStorage.setItem('email', responseDataObject.email);
 
-      sessionStorage.setItem('name', responseDataObject.name);
+        sessionStorage.setItem('name', responseDataObject.name);
 
-      navigate('/register');
+        navigate('/register');
+      }
     }
   }, []);
   const navigate = useNavigate();

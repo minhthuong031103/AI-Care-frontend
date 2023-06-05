@@ -12,12 +12,14 @@ export default function HomeTest() {
     if (urlParams) {
       const responseDataString = urlParams.get('responseData');
       const responseDataObject = JSON.parse(responseDataString);
-      // Use the responseData as needed
-      localStorage.setItem('token', responseDataObject.token);
-      localStorage.setItem('_id', responseDataObject._id);
-      localStorage.setItem('username', responseDataObject.name);
+      if (responseDataObject) {
+        localStorage.setItem('token', responseDataObject.token);
+        localStorage.setItem('_id', responseDataObject._id);
+        localStorage.setItem('username', responseDataObject.name);
 
-      navigate('/');
+        navigate('/');
+      }
+      // Use the responseData as needed
     }
   }, []);
   return (
