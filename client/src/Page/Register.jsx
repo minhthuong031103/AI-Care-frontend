@@ -6,6 +6,7 @@ import { registerUser } from '../helper/loginHelper';
 import { useEffect, useState } from 'react';
 export default function Register() {
   useEffect(function () {
+    console.log(1)
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams) {
       const responseDataString = urlParams.get('responseData');
